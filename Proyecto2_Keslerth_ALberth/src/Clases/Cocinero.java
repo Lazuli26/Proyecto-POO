@@ -4,29 +4,24 @@ import java.util.ArrayList;
 
 public class Cocinero extends Persona {
 
-    private String nivel;
+    private String direccion;
+
+    private String correo;
 
     private ArrayList<Orden> ordenesCocinar;
 
     public Cocinero() {
     }
 
-    public Cocinero(String nivel, ArrayList<Orden> ordenesCocinar, String nombreFull, int cedula, int telefono, String direccion, String correo) {
-        super(nombreFull, cedula, telefono, direccion, correo);
-        this.nivel = nivel;
-        this.ordenesCocinar = ordenesCocinar;
+    public Cocinero(String nombreFull, int cedula, int telefono, String direccion, String correo) {
+        super(nombreFull, cedula, telefono);
+        this.ordenesCocinar = new ArrayList<Orden>();
+        this.direccion=direccion;
+        this.correo=correo;
     }
 
     public void agregarOrdenCocinar(Orden orden) {
         this.ordenesCocinar.add(orden);
-    }
-
-    public String getNivel() {
-        return nivel;
-    }
-
-    public void setNivel(String nivel) {
-        this.nivel = nivel;
     }
 
     public ArrayList<Orden> getOrdenesCocinar() {

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author keslerth
  */
 public class vPrincipal extends javax.swing.JFrame {
-    Restaurante restaurante;
+    public static Restaurante restaurante;
     
     ArrayList direccion;
     String path;  
@@ -55,9 +55,8 @@ public class vPrincipal extends javax.swing.JFrame {
         foto = new ImageIcon(url);
         //Foto---
         //Mesero---
-        ArrayList idiomasM1 = new ArrayList();
-        ArrayList<Orden> ordenesM1 = new ArrayList(); 
-        Mesero mesero1 = new Mesero(idiomasM1, null, ordenesM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com");
+        String idiomasM1="";
+        Mesero mesero1 = new Mesero(idiomasM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com");
         //Mesero---
         Mesa mesa1 = new Mesa(1, 5, true);
         Mesa mesa2 = new Mesa(2, 2, true);
@@ -98,21 +97,14 @@ public class vPrincipal extends javax.swing.JFrame {
         vAgregarCliente = new AgregarCliente(restaurante, vAtenderCliente);
         vEscogerMesa = new EscogerMesa(restaurante, vAtenderCliente);
         vPedirComida = new PedirComida(restaurante);
-        clientes.add(new Cliente(0,new Orden() , 0, "Alberth", 207690305, 88016578, "Zona Fluca", "alberthsalascalero@gmail.com"));
-        clientes.add(new Cliente(1,new Orden() , 0, "Keslerth", 000000000, 00000000, "Ciudad Quesada", "keslerth@gmail.com"));
-        ArrayList idioma=new ArrayList();
-        idioma.add("Español");
-        ArrayList<Cliente> clientesAtender;
-        meseros.add(new Mesero(idioma, new ArrayList<Cliente>(), new ArrayList<Orden>(), "Juan Miguel", 374595903, 89329922, "La Fortuna", "juan@ola.com"));
-        meseros.add(new Mesero(idioma, new ArrayList<Cliente>(), new ArrayList<Orden>(), "Carlos Ferrer", 87231719, 82193821, "Santa Clara", "cf@ola.com"));
-        cocineros.add(new Cocinero("Uno", new ArrayList<Orden>(), "Regildo Ortega", 43958954, 83947945, "San Isidro", "reg.or@ola.com"));
-        cocineros.add(new Cocinero("Dos", new ArrayList<Orden>(), "Regildo Ortega", 43958954, 83947945, "San Isidro", "reg.or@ola.com"));
         //Agregar ventanas al Escritorio
+        vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
+        this.jDesktopPane1.add(vAtenderCliente);
         this.jDesktopPane1.add(vInfoRes);
         this.jDesktopPane1.add(vAgregarCliente);
         this.jDesktopPane1.add(vEscogerMesa);
         this.jDesktopPane1.add(vPedirComida);
-     
+        this.jDesktopPane1.add(new AgregarEmpleado());
     }
 
     /**
@@ -241,8 +233,6 @@ public class vPrincipal extends javax.swing.JFrame {
         int mesero = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la cedula, mesero"));
         for(int i = 0;i<restaurante.getMeseros().size();i++){
             if(restaurante.getMeseros().get(i).getCedula() == 123){
-                vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
-                this.jDesktopPane1.add(vAtenderCliente);
                 vAtenderCliente.show();
                 vAtenderCliente.orden.setMeseroAtiende(restaurante.getMeseros().get(i));
                 this.lblNomMesero.setText(restaurante.getMeseros().get(i).getNombreFull());
@@ -261,7 +251,6 @@ public class vPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**

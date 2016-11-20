@@ -1,5 +1,6 @@
 package Clases;
 
+import Ventanas.vPrincipal;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -420,5 +421,7 @@ public class Restaurante {
     public void setMenus(ArrayList<Menu> menus) {
         this.menus = menus;
     }
-
+    public static Restaurante getInstance(){
+        return vPrincipal.restaurante;
+    }
 }
