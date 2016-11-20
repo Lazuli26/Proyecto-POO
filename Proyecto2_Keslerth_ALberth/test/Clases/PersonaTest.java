@@ -123,8 +123,6 @@ public class PersonaTest {
      */
     @Test
     public void testGetDireccion() {
-        System.out.println("getDireccion");
-        Persona instance = new Persona();
         String expResult = "";
         String result = instance.getDireccion();
         assertEquals(expResult, result);

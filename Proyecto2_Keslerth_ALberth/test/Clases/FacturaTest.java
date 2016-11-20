@@ -161,7 +161,7 @@ public class FacturaTest {
      */
     @Test
     public void testSetOrden() {
-        Orden orden = new Orden(2, 1, null, null, null, null,  null,null);
+        Orden orden = new Orden(2, 1, null,  null,null);
         factura.setOrden(orden);
         assertEquals("El cambio de orden es erronea",orden.getNumero(), factura.getOrden().getNumero(),0);
     }

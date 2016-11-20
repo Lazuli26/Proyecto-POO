@@ -26,9 +26,7 @@ public class MenuTest {
     
     @Before
     public void setUp() {
-        ArrayList<Plato> platos = new ArrayList();
-        ArrayList<Bebida> bebidas = new ArrayList();
-        menu = new Menu(platos,bebidas);
+        menu = new Menu();
     }
     
     @After

@@ -28,15 +28,15 @@ public class PedirComida extends javax.swing.JInternalFrame {
     }
     
     public void verPlatos(DefaultTableModel model){
-        for(int i = 0;i<res.getMenus().get(0).getListaPratillos().size();i++){
-            model.addRow(new Object[]{res.getMenus().get(0).getListaPratillos().get(i).getNomPlato(),res.getMenus().get(0).getListaPratillos().get(i).getPrecioSinImpuesto(),0,false});
+        for(int i = 0;i<res.getMenus().getListaPratillos().size();i++){
+            model.addRow(new Object[]{res.getMenus().getListaPratillos().get(i).getNomPlato(),res.getMenus().getListaPratillos().get(i).getPrecioSinImpuesto(),0,false});
         }
         this.jTable1.setModel(model);
     }
 
     public void verBebidas(DefaultTableModel model){
-        for(int i = 0;i<res.getMenus().get(0).getListaBebidas().size();i++){
-            model.addRow(new Object[]{res.getMenus().get(0).getListaBebidas().get(i).getTipo(),res.getMenus().get(0).getListaBebidas().get(i).getPrecio(),0,res.getMenus().get(0).getListaBebidas().get(i).getPesoML(),false});
+        for(int i = 0;i<res.getMenus().getListaBebidas().size();i++){
+            model.addRow(new Object[]{res.getMenus().getListaBebidas().get(i).getTipo(),res.getMenus().getListaBebidas().get(i).getPrecio(),0,res.getMenus().getListaBebidas().get(i).getPesoML(),false});
         }
         this.jTable2.setModel(model);
     }

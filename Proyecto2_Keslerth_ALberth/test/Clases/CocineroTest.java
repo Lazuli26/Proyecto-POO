@@ -28,7 +28,7 @@ public class CocineroTest {
         Orden orden = new Orden();
         ArrayList<Orden> ordenesCocinar = new ArrayList();
         ordenesCocinar.add(orden);
-        cocinero = new Cocinero("Master", ordenesCocinar, "Alberth Salas Calero", 201230434, 87878787, "Fortuna, zona fulca", "alberthsalas@gmail.com");
+        cocinero = new Cocinero("Alberth Salas Calero", 201230434, 87878787, "Fortuna, zona fulca", "alberthsalas@gmail.com");
     }
     
     @After
@@ -44,26 +44,6 @@ public class CocineroTest {
         Orden orden = new Orden();
         cocinero.agregarOrdenCocinar(orden);
         assertEquals("No agrega correctamente",2, cocinero.getOrdenesCocinar().size(),0);
-    }
-
-    /**
-     * Test of getNivel method, of class Cocinero.
-     */
-    @Test
-    public void testGetNivel() {
-        String expResult = "Master";
-        String result = cocinero.getNivel();
-        assertEquals("El nivel del cocinero es erroneo",expResult, result);
-    }
-
-    /**
-     * Test of setNivel method, of class Cocinero.
-     */
-    @Test
-    public void testSetNivel() {
-        String nivel = "Fantasia";
-        cocinero.setNivel(nivel);
-        assertEquals("El nivel del cocinero no cambio, es erroneo", nivel, cocinero.getNivel());
     }
 
     /**
