@@ -40,9 +40,6 @@ public class vPrincipal extends javax.swing.JFrame {
      */
     public vPrincipal() {
         initComponents();
-        meseros=new ArrayList<Mesero>();
-        cocineros=new ArrayList<Cocinero>();
-        clientes=new ArrayList<Cliente>();
         //Direccion------
         direccion = new ArrayList();
         direccion.add("Alajuela");
@@ -56,40 +53,6 @@ public class vPrincipal extends javax.swing.JFrame {
         foto = new ImageIcon(url);
         //Foto---
         //Mesero---
-        String idiomasM1="";
-        Mesero mesero1 = new Mesero(idiomasM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com");
-        //Mesero---
-        Mesa mesa1 = new Mesa(1, 5, true);
-        Mesa mesa2 = new Mesa(2, 2, true);
-        Mesa mesa3 = new Mesa(3, 7, true);
-        
-        ArrayList<Plato> platos = new ArrayList();
-        ArrayList<Bebida> bebidas = new ArrayList();
-        
-        Menu menu = new Menu(platos,bebidas);
-        ArrayList ingredientesP1 = new ArrayList();
-        ArrayList ingredientesP2 = new ArrayList();
-        
-        Plato plato1 = new Plato(1, "Arroz", ingredientesP1, 200, 300, "Bueno", null);
-        Plato plato2 = new Plato(1, "Bisec", ingredientesP2, 200, 300, "Recien hecha", null);
-        Bebida bebida1 = new Bebida("Coca Cola", 500, 350);
-        Bebida bebida2 = new Bebida("Agua con hielo", 0, 350);
-        Bebida bebida3 = new Bebida("Te frío", 500, 600);
-        
-        menu.agregarPlato(plato1);
-        menu.agregarPlato(plato2);
-        menu.agregarBebida(bebida1);
-        menu.agregarBebida(bebida2);
-        menu.agregarBebida(bebida3);
-        
-        ArrayList<Mesero> meseros = new ArrayList();
-        ArrayList<Mesa> mesas = new ArrayList();
-        ArrayList<Menu> menus = new ArrayList();
-        meseros.add(mesero1);
-        mesas.add(mesa1);
-        mesas.add(mesa2);
-        mesas.add(mesa3);
-        menus.add(menu);
         restaurante = new Restaurante("Cheese Restaurante", foto, 86360027, direccion, "cheeseres@gmail.com");
         //Inicializar ventanas
         vInfoRes = new infoRest(restaurante);

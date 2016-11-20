@@ -9,11 +9,8 @@ public class Menu {
     private ArrayList<Bebida> listaBebidas;
 
     public Menu() {
-    }
-
-    public Menu(ArrayList<Plato> listaPratillos, ArrayList<Bebida> listaBebidas) {
-        this.listaPratillos = listaPratillos;
-        this.listaBebidas = listaBebidas;
+        this.listaPratillos = new ArrayList<Plato>();
+        this.listaBebidas = new ArrayList<Bebida>();
     }
     
 

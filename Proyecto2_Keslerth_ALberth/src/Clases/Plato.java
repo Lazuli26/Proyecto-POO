@@ -8,7 +8,7 @@ public class Plato {
 
     private String nomPlato;
 
-    private ArrayList ingredientes;
+    private String ingredientes;
 
     private int precioSinImpuesto;
 
@@ -21,7 +21,7 @@ public class Plato {
     public Plato() {
     }
 
-    public Plato(int numPlato, String nomPlato, ArrayList ingredientes, int precioSinImpuesto, int cantidadCalorias, String estado, Cocinero cookNow) {
+    public Plato(int numPlato, String nomPlato, String ingredientes, int precioSinImpuesto, int cantidadCalorias, String estado, Cocinero cookNow) {
         this.numPlato = numPlato;
         this.nomPlato = nomPlato;
         this.ingredientes = ingredientes;
@@ -47,11 +47,11 @@ public class Plato {
         this.nomPlato = nomPlato;
     }
 
-    public ArrayList getIngredientes() {
+    public String getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(ArrayList ingredientes) {
+    public void setIngredientes(String ingredientes) {
         this.ingredientes = ingredientes;
     }
 

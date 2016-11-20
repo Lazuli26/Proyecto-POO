@@ -27,7 +27,7 @@ public class Restaurante {
 
     private ArrayList<Mesa> mesas;
 
-    private ArrayList<Menu> menus;
+    private Menu menus;
 
     private ArrayList<Orden> ordenesCanceladas;
 
@@ -37,6 +37,9 @@ public class Restaurante {
     }
 
     public Restaurante(String nombre, ImageIcon logo, int telefono, ArrayList direccion, String correo) {
+        String idiomasM1="Español";
+        Mesero mesero1 = new Mesero(idiomasM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com");
+        //Mesero---
         this.nombre = nombre;
         this.logo = logo;
         this.telefono = telefono;
@@ -47,10 +50,19 @@ public class Restaurante {
         this.clientes=new ArrayList<Cliente>();
         this.cocineros = new ArrayList<Cocinero>();
         this.ordenes = new ArrayList<Orden>();
-        this.mesas = new ArrayList<Mesa>();
-        this.menus = new ArrayList<Menu>();
         this.ordenesCanceladas = new ArrayList();
         this.facturas = new ArrayList();
+        this.mesas = new ArrayList<Mesa>();
+        this.menus = new Menu();
+        this.mesas.add(new Mesa(1, 5, true));
+        this.mesas.add(new Mesa(2, 2, true));
+        this.mesas.add(new Mesa(3, 7, true));
+        this.menus.agregarPlato(new Plato(1, "Arroz", "Arroz, Sal, Agua", 200, 300, "Bueno", null));
+        this.menus.agregarPlato(new Plato(1, "Bisec", "Carne, Aceite,", 200, 300, "Recien hecha", null));
+        this.menus.agregarBebida(new Bebida("Coca Cola", 500, 350));
+        this.menus.agregarBebida(new Bebida("Agua con hielo", 0, 350));
+        this.menus.agregarBebida(new Bebida("Te frío", 500, 600));
+        this.meseros.add(new Mesero(idiomasM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com"));
     }
 
     public void contratarMesero(Mesero mesero) {
