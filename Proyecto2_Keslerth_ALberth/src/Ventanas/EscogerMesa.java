@@ -22,7 +22,7 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
         initComponents();
         res = restaurante;
         this.vAtender = vAtender;
-        this.jComboBox1.removeAll();
+        this.jComboBox1.removeAllItems();
         for(int i = 0; i<restaurante.getMesas().size();i++){
             this.jComboBox1.addItem(restaurante.getMesas().get(i).getNumAsientos());
         }
@@ -176,10 +176,10 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int numMesa = Integer.parseInt((String) this.jComboBox1.getSelectedItem());
+        int numMesa = Integer.parseInt(this.jComboBox1.getSelectedItem().toString());
         for(int i = 0; i < res.getMesas().size();i++){
             if (numMesa == res.getMesas().get(i).getNumAsientos()){
-                this.vAtender.orden.setMesaCliente(res.getMesas().get(i));
+                AtenderCliente.orden.setMesaCliente(res.getMesas().get(i));
                 break;
             }
         }
@@ -188,11 +188,12 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.jComboBox1.removeAll();
+        this.jComboBox1.setSelectedIndex(0);
         this.lblCantPer.setText("");
         this.lblCantSil.setText("");
         this.lblUtil.setText("");
         this.lblDispo.setText("");
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MousePressed
@@ -201,12 +202,12 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
 
     private void VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerActionPerformed
         // TODO add your handling code here:
-        int numMesa = Integer.parseInt((String) this.jComboBox1.getSelectedItem());
+        int numMesa = Integer.parseInt((this.jComboBox1.getSelectedItem().toString()));
         for(int i = 0; i < res.getMesas().size();i++){
             if (numMesa == res.getMesas().get(i).getNumAsientos()){
                 this.lblCantSil.setText(String.valueOf(res.getMesas().get(i).getCantidad()));
-                this.lblCantPer.setText(String.valueOf(vAtender.orden.getClientesAtendidos().size()));
-                if(res.getMesas().get(i).getCantidad() > vAtender.orden.getClientesAtendidos().size()){
+                this.lblCantPer.setText(String.valueOf(AtenderCliente.orden.getClientesAtendidos().size()));
+                if(res.getMesas().get(i).getCantidad() > AtenderCliente.orden.getClientesAtendidos().size()){
                     if(res.getMesas().get(i).isDisponible()){
                         this.lblDispo.setText("Si");
                         this.lblUtil.setText("Si");
