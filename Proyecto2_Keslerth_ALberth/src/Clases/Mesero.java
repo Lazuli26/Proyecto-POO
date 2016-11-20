@@ -20,8 +20,8 @@ public class Mesero extends Persona {
         this.ordenes = ordenes;
     }
 
-    public Orden crearOrden(ArrayList<Cliente> clientes,ArrayList<Plato> platos, ArrayList<Bebida> bebidas, Mesa mesa, Mesero mesero, Menu menu) {
-        Orden orden = new Orden( 0, mesa.getNumAsientos(), platos, bebidas, this, mesa, clientes, menu);
+    public Orden crearOrden(Mesa mesa, Mesero mesero, Menu menu) {
+        Orden orden = new Orden( 0, mesa.getNumAsientos(), this, mesa, menu);
         this.ordenes.add(orden);
         return orden;
     }

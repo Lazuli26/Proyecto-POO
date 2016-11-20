@@ -23,14 +23,14 @@ public class Orden {
     public Orden() {
     }
 
-    public Orden(int numero, int numMesa, ArrayList<Plato> platos, ArrayList<Bebida> bebidas, Mesero meseroAtiende, Mesa mesaCliente, ArrayList<Cliente> clientesAtendidos, Menu menu) {
+    public Orden(int numero, int numMesa, Mesero meseroAtiende, Mesa mesaCliente, Menu menu) {
         this.numero = numero;
         this.numMesa = numMesa;
-        this.platos = platos;
-        this.bebidas = bebidas;
+        this.platos = new ArrayList();
+        this.bebidas = new ArrayList();
         this.meseroAtiende = meseroAtiende;
         this.mesaCliente = mesaCliente;
-        this.clientesAtendidos = clientesAtendidos;
+        this.clientesAtendidos = new ArrayList();
         this.menu = menu;
     }
     
