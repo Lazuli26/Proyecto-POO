@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
  */
 public class vPrincipal extends javax.swing.JFrame {
     public static Restaurante restaurante;
-    
     ArrayList direccion;
     String path;  
     URL url;
@@ -27,6 +26,8 @@ public class vPrincipal extends javax.swing.JFrame {
     
     infoRest vInfoRes;
     public static AtenderCliente vAtenderCliente;
+    AgregarEmpleado vAgregarEmpleado;
+    VerEmpleados vAVerEmpleado;
     AgregarCliente vAgregarCliente;
     EscogerMesa vEscogerMesa;
     PedirComida vPedirComida;
@@ -89,22 +90,19 @@ public class vPrincipal extends javax.swing.JFrame {
         mesas.add(mesa2);
         mesas.add(mesa3);
         menus.add(menu);
-        
-        restaurante = new Restaurante("Cheese Restaurante", foto, 86360027, direccion, "cheeseres@gmail.com", null, meseros, null, null, mesas, menus);
+        restaurante = new Restaurante("Cheese Restaurante", foto, 86360027, direccion, "cheeseres@gmail.com");
         //Inicializar ventanas
         vInfoRes = new infoRest(restaurante);
+        vAgregarEmpleado=new AgregarEmpleado();
         vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
         vAgregarCliente = new AgregarCliente(restaurante, vAtenderCliente);
         vEscogerMesa = new EscogerMesa(restaurante, vAtenderCliente);
         vPedirComida = new PedirComida(restaurante);
+        vAVerEmpleado=new VerEmpleados();
         //Agregar ventanas al Escritorio
-        vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
-        this.jDesktopPane1.add(vAtenderCliente);
-        this.jDesktopPane1.add(vInfoRes);
         this.jDesktopPane1.add(vAgregarCliente);
         this.jDesktopPane1.add(vEscogerMesa);
         this.jDesktopPane1.add(vPedirComida);
-        this.jDesktopPane1.add(new AgregarEmpleado());
     }
 
     /**
@@ -116,6 +114,7 @@ public class vPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         lblNomMesero = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -123,7 +122,9 @@ public class vPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuMes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuCoc = new javax.swing.JMenu();
@@ -179,13 +180,25 @@ public class vPrincipal extends javax.swing.JFrame {
         });
         jMenuRes.add(jMenuItem2);
 
-        jMenuItem5.setText("Empleados");
+        jMenu1.setText("Empleados");
+
+        jMenuItem5.setText("Contratar");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenuRes.add(jMenuItem5);
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setText("Ver");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuRes.add(jMenu1);
 
         jMenuBar1.add(jMenuRes);
 
@@ -233,6 +246,9 @@ public class vPrincipal extends javax.swing.JFrame {
         int mesero = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la cedula, mesero"));
         for(int i = 0;i<restaurante.getMeseros().size();i++){
             if(restaurante.getMeseros().get(i).getCedula() == 123){
+                vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
+                this.jDesktopPane1.add(vAtenderCliente);
+                this.jDesktopPane1.add(vInfoRes);
                 vAtenderCliente.show();
                 vAtenderCliente.orden.setMeseroAtiende(restaurante.getMeseros().get(i));
                 this.lblNomMesero.setText(restaurante.getMeseros().get(i).getNombreFull());
@@ -251,7 +267,19 @@ public class vPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        vAgregarEmpleado.dispose();
+        vAgregarEmpleado=new AgregarEmpleado();
+        this.jDesktopPane1.add(vAgregarEmpleado);
+        vAgregarEmpleado.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        vAVerEmpleado.dispose();
+        vAVerEmpleado=new VerEmpleados();
+        this.jDesktopPane1.add(vAVerEmpleado);
+        vAVerEmpleado.show();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,6 +318,7 @@ public class vPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCli;
     private javax.swing.JMenu jMenuCoc;
@@ -298,8 +327,10 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMenuMes;
     private javax.swing.JMenu jMenuRes;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JLabel lblNomMesero;
     // End of variables declaration//GEN-END:variables
 }

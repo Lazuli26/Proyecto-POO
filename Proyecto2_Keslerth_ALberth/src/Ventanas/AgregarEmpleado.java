@@ -9,10 +9,10 @@ import Clases.*;
  *
  * @author Usuario
  */
-public class AgregarEmpleado extends javax.swing.JFrame {
+public class AgregarEmpleado extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form AgregarEmpleado
+     * Creates new form NewJInternalFrame
      */
     public AgregarEmpleado() {
         initComponents();
@@ -27,12 +27,9 @@ public class AgregarEmpleado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jProgressBar1 = new javax.swing.JProgressBar();
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -41,18 +38,14 @@ public class AgregarEmpleado extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Nombre");
-
-        jLabel2.setText("Cedula");
-
         jLabel3.setText("Telefono");
+
+        jLabel6.setText("Idiomas");
 
         jLabel4.setText("Direccion");
 
@@ -65,6 +58,8 @@ public class AgregarEmpleado extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Nombre");
+
         jButton1.setText("Contratar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,7 +67,7 @@ public class AgregarEmpleado extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Idiomas");
+        jLabel2.setText("Cedula");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,9 +84,9 @@ public class AgregarEmpleado extends javax.swing.JFrame {
                                 .addComponent(jLabel3))
                             .addGap(29, 29, 29)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jTextField3)
-                                .addComponent(jTextField1)))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
@@ -101,7 +96,7 @@ public class AgregarEmpleado extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextField6)
                                 .addComponent(jTextField4)
-                                .addComponent(jTextField5))))
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -142,7 +137,7 @@ public class AgregarEmpleado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jLabel7))
-                .addContainerGap())
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -163,59 +158,27 @@ public class AgregarEmpleado extends javax.swing.JFrame {
         if(jComboBox1.getSelectedIndex()==0){
             try{
                 Restaurante.getInstance().contratarMesero(new Mesero(jTextField6.getText(), jTextField1.getText(),Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField3.getText()), jTextField5.getText(), jTextField4.getText()));
+                jLabel7.setText("");
+                this.dispose();
             }
             catch(Exception e){
-                jLabel7.setText("Probablemente ingreso datos no numericos en campos numericos");
+                jLabel7.setText("Error de ingreso a campos");
             }
         }
         else{
             try{
                 Restaurante.getInstance().contratarCocinero(new Cocinero(jTextField1.getText(),Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField3.getText()), jTextField5.getText(), jTextField4.getText()));
+                jLabel7.setText("");
+                this.dispose();
             }
             catch(Exception e){
-                jLabel7.setText("Probablemente ingreso datos no numericos en campos numericos");
+                jLabel7.setText("Error de ingreso a campos");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarEmpleado().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -225,7 +188,6 @@ public class AgregarEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
