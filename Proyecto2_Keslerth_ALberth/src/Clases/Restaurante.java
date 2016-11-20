@@ -38,7 +38,6 @@ public class Restaurante {
 
     public Restaurante(String nombre, ImageIcon logo, int telefono, ArrayList direccion, String correo) {
         String idiomasM1="Español";
-        Mesero mesero1 = new Mesero(idiomasM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com");
         //Mesero---
         this.nombre = nombre;
         this.logo = logo;
@@ -62,7 +61,8 @@ public class Restaurante {
         this.menus.agregarBebida(new Bebida("Coca Cola", 500, 350));
         this.menus.agregarBebida(new Bebida("Agua con hielo", 0, 350));
         this.menus.agregarBebida(new Bebida("Te frío", 500, 600));
-        this.meseros.add(new Mesero(idiomasM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com"));
+        this.meseros.add(new Mesero("Español", "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com"));
+        this.cocineros.add(new Cocinero("Alberth Salas", 207690305, 88016578, "Por mi casita", "alberthsalascalero@gmail.com"));
     }
 
     public void contratarMesero(Mesero mesero) {
