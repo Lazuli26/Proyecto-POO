@@ -11,8 +11,8 @@ public class Cliente extends Persona {
     public Cliente() {
     }
 
-    public Cliente(int numCliente, Orden orden, int vecesVisitadas, String nombreFull, int cedula, int telefono, String direccion, String correo) {
-        super(nombreFull, cedula, telefono, direccion, correo);
+    public Cliente(int numCliente, Orden orden, int vecesVisitadas, String nombreFull, int cedula, int telefono) {
+        super(nombreFull, cedula, telefono);
         this.numCliente = numCliente;
         this.orden = orden;
         this.vecesVisitadas = vecesVisitadas;

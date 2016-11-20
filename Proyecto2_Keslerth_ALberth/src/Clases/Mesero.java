@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class Mesero extends Persona {
 
-    private ArrayList idiomas;
+    private String idiomas;
+
+    private String direccion;
+
+    private String correo;
 
     private ArrayList<Cliente> clientesAtender;
 
@@ -13,11 +17,13 @@ public class Mesero extends Persona {
     public Mesero() {
     }
 
-    public Mesero(ArrayList idiomas, ArrayList<Cliente> clientesAtender, ArrayList<Orden> ordenes, String nombreFull, int cedula, int telefono, String direccion, String correo) {
-        super(nombreFull, cedula, telefono, direccion, correo);
+    public Mesero(String idiomas, String nombreFull, int cedula, int telefono, String direccion, String correo) {
+        super(nombreFull, cedula, telefono);
         this.idiomas = idiomas;
-        this.clientesAtender = clientesAtender;
-        this.ordenes = ordenes;
+        this.clientesAtender =new ArrayList<Cliente>();
+        this.ordenes = new ArrayList<Orden>();
+        this.direccion=direccion;
+        this.correo=correo;
     }
 
     public Orden crearOrden(Mesa mesa, Mesero mesero, Menu menu) {
@@ -26,11 +32,11 @@ public class Mesero extends Persona {
         return orden;
     }
 
-    public ArrayList getIdiomas() {
+    public String getIdiomas() {
         return idiomas;
     }
 
-    public void setIdiomas(ArrayList idiomas) {
+    public void setIdiomas(String idiomas) {
         this.idiomas = idiomas;
     }
 
