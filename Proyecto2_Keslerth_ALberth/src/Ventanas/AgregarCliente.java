@@ -6,7 +6,6 @@
 package Ventanas;
 
 import Clases.Cliente;
-import Clases.Orden;
 import Clases.Restaurante;
 
 /**
@@ -14,7 +13,7 @@ import Clases.Restaurante;
  * @author keslerth
  */
 public class AgregarCliente extends javax.swing.JInternalFrame {
-    int numCliente = 0;
+    static int numCliente = 1;
     Restaurante res;
     AtenderCliente vAtender;
     /**
@@ -148,9 +147,9 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cliente cliente = new Cliente(numCliente, null, 1, this.txtNombre.getText(), Integer.parseInt(this.txtCedula.getText()), Integer.parseInt(this.txtTelefono.getText()));
-        numCliente++;
-        vAtender.orden.grupoClientes(cliente);
+        Cliente cliente = new Cliente(numCliente, AtenderCliente.orden, 1, this.txtNombre.getText(), Integer.parseInt(this.txtCedula.getText()), Integer.parseInt(this.txtTelefono.getText()));
+        numCliente+=1;
+        AtenderCliente.orden.grupoClientes(cliente);
         vAtender.jComboBox1.addItem(this.txtNombre.getText());
         txtBlancos();
         this.setVisible(false);

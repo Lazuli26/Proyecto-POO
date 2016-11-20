@@ -245,10 +245,10 @@ public class vPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         int mesero = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la cedula, mesero"));
         for(int i = 0;i<restaurante.getMeseros().size();i++){
-            if(restaurante.getMeseros().get(i).getCedula() == 123){
+
+            if(restaurante.getMeseros().get(i).getCedula() == mesero){
                 vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
                 this.jDesktopPane1.add(vAtenderCliente);
-                this.jDesktopPane1.add(vInfoRes);
                 vAtenderCliente.show();
                 vAtenderCliente.orden.setMeseroAtiende(restaurante.getMeseros().get(i));
                 this.lblNomMesero.setText(restaurante.getMeseros().get(i).getNombreFull());

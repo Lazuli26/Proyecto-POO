@@ -36,7 +36,7 @@ public class Restaurante {
     public Restaurante() {
     }
 
-    public Restaurante(String nombre, ImageIcon logo, int telefono, ArrayList direccion, String correo, ArrayList<Mesa> mesas, ArrayList<Menu> menus) {
+    public Restaurante(String nombre, ImageIcon logo, int telefono, ArrayList direccion, String correo) {
         this.nombre = nombre;
         this.logo = logo;
         this.telefono = telefono;
@@ -47,8 +47,8 @@ public class Restaurante {
         this.clientes=new ArrayList<Cliente>();
         this.cocineros = new ArrayList<Cocinero>();
         this.ordenes = new ArrayList<Orden>();
-        this.mesas = new ArrayList<Mesa>;
-        this.menus = menus;
+        this.mesas = new ArrayList<Mesa>();
+        this.menus = new ArrayList<Menu>();
         this.ordenesCanceladas = new ArrayList();
         this.facturas = new ArrayList();
     }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class AtenderCliente extends javax.swing.JInternalFrame {
     static int numOrden = 1;
     Restaurante res;
-    public Orden orden;
+    public static Orden orden;
     AgregarCliente vAgregarCliente;
     EscogerMesa vEscogerMesa;
     PedirComida vPedirComida;
@@ -37,12 +37,16 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
         this.vEscogerMesa = vEscogerMesa;
         this.vPedirComida = vPedirComida;
         //Crear orden
-        ArrayList<Plato> platos = new ArrayList();
-        ArrayList<Bebida> bebidas = new ArrayList();
-        ArrayList<Cliente> clientesAtendidos = new ArrayList();
-        orden = new Orden(numOrden, 0, platos,  bebidas, null, null, clientesAtendidos, null);
+        orden = new Orden(numOrden, 0, null, null, null);
+        this.jComboBox1.removeAll();
     }
 
+    public void llenarCombo(){
+        this.jComboBox1.removeAll();
+        for(int i = 0;i < orden.getClientesAtendidos().size();i++){
+            this.jComboBox1.addItem(orden.getClientesAtendidos().get(i).getNombreFull());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
