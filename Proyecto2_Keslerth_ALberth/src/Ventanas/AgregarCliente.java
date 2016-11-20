@@ -6,7 +6,11 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Orden;
 import Clases.Restaurante;
+import static Ventanas.AtenderCliente.orden;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -26,7 +30,9 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
         this.jLabel7.setText(String.valueOf(numCliente));
         
     }
+    
     public void txtBlancos(){
+        this.jLabel7.setText(String.valueOf(numCliente));
         this.txtNombre.setText("");
         this.txtCedula.setText("");
         this.txtTelefono.setText("");
@@ -150,7 +156,6 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
         Cliente cliente = new Cliente(numCliente, AtenderCliente.orden, 1, this.txtNombre.getText(), Integer.parseInt(this.txtCedula.getText()), Integer.parseInt(this.txtTelefono.getText()));
         numCliente+=1;
         AtenderCliente.orden.grupoClientes(cliente);
-        vAtender.jComboBox1.addItem(this.txtNombre.getText());
         txtBlancos();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

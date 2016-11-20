@@ -427,11 +427,11 @@ public class Restaurante {
         this.mesas = mesas;
     }
 
-    public ArrayList<Menu> getMenus() {
+    public Menu getMenus() {
         return menus;
     }
 
-    public void setMenus(ArrayList<Menu> menus) {
+    public void setMenus(Menu menus) {
         this.menus = menus;
     }
     public static Restaurante getInstance(){

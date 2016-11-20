@@ -213,7 +213,7 @@ public class vPrincipal extends javax.swing.JFrame {
                 vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
                 this.jDesktopPane1.add(vAtenderCliente);
                 vAtenderCliente.show();
-                vAtenderCliente.orden.setMeseroAtiende(restaurante.getMeseros().get(i));
+                AtenderCliente.orden.setMeseroAtiende(restaurante.getMeseros().get(i));
                 this.lblNomMesero.setText(restaurante.getMeseros().get(i).getNombreFull());
             }
         }
