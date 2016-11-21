@@ -5,7 +5,6 @@
         <group>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Ventanas/vPrincipal.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Ventanas/VentanaPrincipal.java</file>
-            <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Ventanas/AtenderCliente.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Ventanas/AgregarCliente.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Clases/Orden.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Clases/Mesero.java</file>
@@ -24,10 +23,14 @@
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/test/Clases/MeseroTest.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/test/Clases/PersonaTest.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/test/Clases/PlatoTest.java</file>
-            <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/test/Clases/RestauranteTest.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Clases/Menu.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Ventanas/Factura.java</file>
             <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Ventanas/Reportes.java</file>
+            <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Ventanas/AtenderCliente.java</file>
+            <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Clases/Main.java</file>
+            <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Clases/Plato.java</file>
+            <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Clases/Factura.java</file>
+            <file>file:/C:/Users/keslerth/Desktop/Proyecto%20POO/Proyecto2_Keslerth_ALberth/src/Clases/Mesa.java</file>
         </group>
     </open-files>
 </project-private>
