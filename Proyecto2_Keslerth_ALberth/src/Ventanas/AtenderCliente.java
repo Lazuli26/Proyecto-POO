@@ -35,7 +35,7 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
         this.vEscogerMesa = vEscogerMesa;
         this.vPedirComida = vPedirComida;
         //Crear orden
-        orden = new Orden(numOrden, 0, null, null, null);
+        orden = new Orden(numOrden, 0, null, 0, null);
         cantidades = new ArrayList();
     }
     public void llenarCombo() {
@@ -46,7 +46,7 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
     }
     public void actualizarMesa(){
         try{
-        this.txtMesa.setText(String.valueOf(orden.getMesaCliente().getNumAsientos()));
+        this.txtMesa.setText(String.valueOf(Main.restaurante.getMesas().get(orden.getMesaCliente()).getNumAsientos()));
         }
         catch(Exception ex){ 
         }
@@ -161,6 +161,11 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
         });
 
         jButton5.setText("Crear Orden");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Cancelar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +174,7 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Actualizar");
+        jButton2.setText("Eliminar ultimo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -190,19 +195,23 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel2)
                                 .addComponent(jButton4))
-                            .addGap(1, 1, 1)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton2)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton3)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(1, 1, 1)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButton1))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jButton3)
+                                            .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton2)
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -232,7 +241,7 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,6 +250,7 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.vEscogerMesa.show();
+        this.vEscogerMesa.llenarcombo();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -258,8 +268,26 @@ public class AtenderCliente extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.orden.setNumero(Main.restaurante.getOrdenes().size());
+        this.orden.setMesaCliente(Integer.parseInt(this.txtMesa.getText()));
+        
+        Main.restaurante.agregarOrdenes(this.orden);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(!this.cantidades.isEmpty()){
+            this.cantidades.remove(this.cantidades.size()-1);
+            if(!this.orden.getBebidas().isEmpty()&&this.orden.getBebidas().get(this.cantidades.size()).getTipo()==this.jTable1.getValueAt(this.cantidades.size(), 0)){
+                this.orden.getBebidas().remove(this.cantidades.size());
+            }
+            if(!this.orden.getPlatos().isEmpty()&&this.orden.getPlatos().get(this.cantidades.size()).getNomPlato()==this.jTable1.getValueAt(this.cantidades.size(), 0)){
+                this.orden.getPlatos().remove(this.cantidades.size());
+            }
+        }
         this.llenarOrden();
     }//GEN-LAST:event_jButton2ActionPerformed
 

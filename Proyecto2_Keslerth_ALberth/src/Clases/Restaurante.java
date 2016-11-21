@@ -67,11 +67,11 @@ public class Restaurante {
         this.meseros.add(new Mesero("Español", "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com"));
         this.cocineros.add(new Cocinero("Alberth Salas", 207690305, 88016578, "Por mi casita", "alberthsalascalero@gmail.com"));
         this.meseros.add(new Mesero("Italiano", "Jancarlo", 133, 88888889, "Por San Jose", "fina@gg.com"));
-        this.ordenes.add(new Orden(1, 1, this.meseros.get(0), this.mesas.get(0), this.menus));
-        this.ordenes.add(new Orden(2, 2, this.meseros.get(1), this.mesas.get(1), this.menus));
-        this.ordenes.add(new Orden(3, 3, this.meseros.get(1), this.mesas.get(2), this.menus));
-        this.ordenes.add(new Orden(4, 3, this.meseros.get(0), this.mesas.get(2), this.menus));
-        this.ordenes.add(new Orden(5, 3, this.meseros.get(0), this.mesas.get(2), this.menus));
+        this.ordenes.add(new Orden(1, 1, this.meseros.get(0), 0, this.menus));
+        this.ordenes.add(new Orden(2, 2, this.meseros.get(1), 1, this.menus));
+        this.ordenes.add(new Orden(3, 3, this.meseros.get(1), 2, this.menus));
+        this.ordenes.add(new Orden(4, 3, this.meseros.get(0), 2, this.menus));
+        this.ordenes.add(new Orden(5, 3, this.meseros.get(0), 2, this.menus));
         this.ordenes.get(0).pedido(this.menus.getListaPratillos().get(0));
         this.ordenes.get(0).pedido(this.menus.getListaPratillos().get(1));
         this.ordenes.get(0).pedido(this.menus.getListaBebidas().get(0));

@@ -13,7 +13,6 @@ import Clases.Restaurante;
  * @author keslerth
  */
 public class EscogerMesa extends javax.swing.JInternalFrame {
-    Restaurante res;
     AtenderCliente vAtender;
     
     /**
@@ -22,6 +21,9 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
     public EscogerMesa() {
         initComponents();
         this.vAtender = vAtender;
+        this.jComboBox1.removeAllItems();
+    }
+    public void llenarcombo(){
         this.jComboBox1.removeAllItems();
         for(int i = 0; i<Main.restaurante.getMesas().size();i++){
             this.jComboBox1.addItem(Main.restaurante.getMesas().get(i).getNumAsientos());
@@ -52,9 +54,27 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
         lblUtil = new javax.swing.JLabel();
         Ver = new javax.swing.JButton();
 
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jComboBox1MousePressed(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jComboBox1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBox1PropertyChange(evt);
             }
         });
 
@@ -177,9 +197,9 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int numMesa = Integer.parseInt(this.jComboBox1.getSelectedItem().toString());
-        for(int i = 0; i < res.getMesas().size();i++){
-            if (numMesa == res.getMesas().get(i).getNumAsientos()){
-                Main.ventana.vAtenderCliente.orden.setMesaCliente(res.getMesas().get(i));
+        for(int i = 0; i < Main.restaurante.getMesas().size();i++){
+            if (numMesa == Main.restaurante.getMesas().get(i).getNumAsientos()){
+                    Main.ventana.vAtenderCliente.orden.setMesaCliente(i);
                 break;
             }
         }
@@ -203,13 +223,33 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
 
     private void VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerActionPerformed
         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_VerActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void jComboBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox1PropertyChange
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox1PropertyChange
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
         int numMesa = Integer.parseInt((this.jComboBox1.getSelectedItem().toString()));
-        for(int i = 0; i < res.getMesas().size();i++){
-            if (numMesa == res.getMesas().get(i).getNumAsientos()){
-                this.lblCantSil.setText(String.valueOf(res.getMesas().get(i).getCantidad()));
+        for(int i = 0; i < Main.restaurante.getMesas().size();i++){
+            if (numMesa == Main.restaurante.getMesas().get(i).getNumAsientos()){
+                this.lblCantSil.setText(String.valueOf(Main.restaurante.getMesas().get(i).getCantidad()));
                 this.lblCantPer.setText(String.valueOf(Main.ventana.vAtenderCliente.orden.getClientesAtendidos().size()));
-                if(res.getMesas().get(i).getCantidad() > Main.ventana.vAtenderCliente.orden.getClientesAtendidos().size()){
-                    if(res.getMesas().get(i).isDisponible()){
+                if(Main.restaurante.getMesas().get(i).getCantidad() > Main.ventana.vAtenderCliente.orden.getClientesAtendidos().size()){
+                    if(Main.restaurante.getMesas().get(i).isDisponible()){
                         this.lblDispo.setText("Si");
                         this.lblUtil.setText("Si");
                     }else{
@@ -222,7 +262,7 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
                 }
             }
         }
-    }//GEN-LAST:event_VerActionPerformed
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
