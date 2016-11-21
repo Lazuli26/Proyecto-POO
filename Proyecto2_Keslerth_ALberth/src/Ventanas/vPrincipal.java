@@ -24,6 +24,7 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
     AgregarCliente vAgregarCliente;
     EscogerMesa vEscogerMesa;
     PedirComida vPedirComida;
+    Reportes vReportes;
     ArrayList<Mesero> meseros;
     ArrayList<Cocinero> cocineros;
     ArrayList<Cliente> clientes;
@@ -42,11 +43,12 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
         vEscogerMesa = new EscogerMesa();
         vPedirComida = new PedirComida();
         vAVerEmpleado=new VerEmpleados();
-        //Agregar ventanas al 
+        //vReportes = new Reportes();
+        //Agregar ventanas al Escritorio
         this.jDesktopPane1.add(vAgregarCliente);
         this.jDesktopPane1.add(vEscogerMesa);
         this.jDesktopPane1.add(vPedirComida);
-        this.jDesktopPane1.add(vInfoRes);
+//        this.jDesktopPane1.add(vReportes);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -218,7 +220,7 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-    
+
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         vAgregarEmpleado.dispose();
