@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-    public class Restaurante {
+public class Restaurante {
 
     private String nombre;
 
@@ -37,13 +37,12 @@ import javax.swing.JOptionPane;
     public Restaurante() {
     }
 
-
     public Restaurante(String nombre, int telefono, ArrayList direccion, String correo) {
         //Mesero---
         this.nombre = nombre;
         String path = "/images/queso.png";
-        URL url=this.getClass().getResource(path);
-        ImageIcon foto=new ImageIcon(url);
+        URL url = this.getClass().getResource(path);
+        ImageIcon foto = new ImageIcon(url);
         this.logo = foto;
         this.telefono = telefono;
         this.direccion = direccion;
@@ -153,7 +152,7 @@ import javax.swing.JOptionPane;
         }
     }
 
-    public void mejorEmpleado(String fecha) {
+    public void mejorEmpleado(int fecha) {
         Mesero empleadoM = new Mesero();
         Cocinero empleadoC = new Cocinero();
         int ordenesM = 0;
@@ -162,12 +161,13 @@ import javax.swing.JOptionPane;
             Mesero empleadoTemp = this.meseros.get(i);
             int ordenesTemp = 0;
             for (int j = 0; j < this.facturas.size(); j++) {
-                int fechaF = Integer.parseInt(String.valueOf(this.facturas.get(j).getFecha()).substring(2, 5));
-                //if (this.facturas.get(j).getOrden().getMeseroAtiende().equals(empleadoTemp) & fechaF.equals(fecha)) {
-                    ordenesTemp++;
-                    break;
-
-                //}
+                int fechaF = Integer.parseInt(String.valueOf(this.facturas.get(j).getFecha()).substring(0, 5));
+                if (this.facturas.get(j).getOrden().getMeseroAtiende().equals(empleadoTemp)) {
+                    if (fechaF == fecha) {
+                        ordenesTemp++;
+                        break;
+                    }
+                }
             }
             if (ordenesTemp >= ordenesM) {
                 empleadoM = empleadoTemp;
@@ -178,10 +178,13 @@ import javax.swing.JOptionPane;
             Cocinero empleadoTemp = this.cocineros.get(i);
             int ordenesTemp = 0;
             for (int j = 0; j < this.facturas.size(); j++) {
+                int fechaF = Integer.parseInt(String.valueOf(this.facturas.get(j).getFecha()).substring(0, 5));
                 for (int k = 0; k < this.facturas.get(j).getOrden().getPlatos().size(); k++) {
-                    if (this.facturas.get(i).getOrden().getPlatos().get(k).getCookNow().equals(empleadoTemp)) {
-                        ordenesTemp++;
-                        break;
+                    if (this.facturas.get(j).getOrden().getPlatos().get(k).getCookNow().equals(empleadoTemp)) {
+                        if (fechaF == fecha) {
+                            ordenesTemp++;
+                            break;
+                        }
                     }
                 }
             }

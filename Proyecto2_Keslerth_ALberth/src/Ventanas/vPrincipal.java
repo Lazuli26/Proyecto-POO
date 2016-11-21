@@ -25,6 +25,7 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
     EscogerMesa vEscogerMesa;
     PedirComida vPedirComida;
     Reportes vReportes;
+    Factura vFactura;
     ArrayList<Mesero> meseros;
     ArrayList<Cocinero> cocineros;
     ArrayList<Cliente> clientes;
@@ -43,12 +44,16 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
         vEscogerMesa = new EscogerMesa();
         vPedirComida = new PedirComida();
         vAVerEmpleado=new VerEmpleados();
-        //vReportes = new Reportes();
-        //Agregar ventanas al Escritorio
+        vReportes = new Reportes();
+        vFactura = new Factura();
+        
+//        Agregar ventanas al Escritorio
         this.jDesktopPane1.add(vAgregarCliente);
         this.jDesktopPane1.add(vEscogerMesa);
         this.jDesktopPane1.add(vPedirComida);
-//        this.jDesktopPane1.add(vReportes);
+        this.jDesktopPane1.add(vReportes);
+        this.jDesktopPane1.add(vFactura);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,11 +75,10 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenuMes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuCoc = new javax.swing.JMenu();
-        jMenuCli = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,6 +150,14 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
 
         jMenuRes.add(jMenu1);
 
+        jMenuItem8.setText("Reportes");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenuRes.add(jMenuItem8);
+
         jMenuBar1.add(jMenuRes);
 
         jMenuMes.setText("Mesero");
@@ -162,18 +174,6 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
 
         jMenuCoc.setText("Cocinero");
         jMenuBar1.add(jMenuCoc);
-
-        jMenuCli.setText("Reportes");
-
-        jMenuItem7.setText("Mejores empleados");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenuCli.add(jMenuItem7);
-
-        jMenuBar1.add(jMenuCli);
 
         setJMenuBar(jMenuBar1);
 
@@ -219,6 +219,7 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        vFactura.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -242,9 +243,9 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,7 +285,6 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuCli;
     private javax.swing.JMenu jMenuCoc;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -292,7 +292,7 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenu jMenuMes;
     private javax.swing.JMenu jMenuRes;
     private javax.swing.JPopupMenu jPopupMenu1;
