@@ -7,6 +7,7 @@ package Ventanas;
 
 import Clases.Restaurante;
 import static Ventanas.vPrincipal.vAtenderCliente;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -210,6 +211,12 @@ public class PedirComida extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(!res.getMenus().getListaPratillos().isEmpty()){
+            res.getMenus().setListaPratillos(new ArrayList());             
+        }
+        if(!res.getMenus().getListaBebidas().isEmpty()){
+            res.getMenus().setListaBebidas(new ArrayList());
+        }
         for(int i = 0;i<res.getMenus().getListaPratillos().size();i++){
             if(this.jTable1.getValueAt(i, 3).toString().equals("true")){
                 AtenderCliente.orden.pedido(res.getMenus().getListaPratillos().get(i));

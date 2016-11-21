@@ -37,9 +37,6 @@ public class Restaurante {
     }
 
     public Restaurante(String nombre, ImageIcon logo, int telefono, ArrayList direccion, String correo) {
-        String idiomasM1 = "Español";
-        Mesero mesero1 = new Mesero(idiomasM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com");
-        //Mesero---
         this.nombre = nombre;
         this.logo = logo;
         this.telefono = telefono;
@@ -62,7 +59,18 @@ public class Restaurante {
         this.menus.agregarBebida(new Bebida("Coca Cola", 500, 350));
         this.menus.agregarBebida(new Bebida("Agua con hielo", 0, 350));
         this.menus.agregarBebida(new Bebida("Te frío", 500, 600));
-        this.meseros.add(new Mesero(idiomasM1, "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com"));
+        this.meseros.add(new Mesero("Español", "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com"));
+        this.meseros.add(new Mesero("Italiano", "Jancarlo", 133, 88888889, "Por San Jose", "fina@gg.com"));
+        this.ordenes.add(new Orden(1, 1, this.meseros.get(0), this.mesas.get(0), this.menus));
+        this.ordenes.add(new Orden(2, 2, this.meseros.get(1), this.mesas.get(1), this.menus));
+        this.ordenes.add(new Orden(3, 3, this.meseros.get(1), this.mesas.get(2), this.menus));
+        this.ordenes.add(new Orden(4, 3, this.meseros.get(0), this.mesas.get(2), this.menus));
+        this.ordenes.add(new Orden(5, 3, this.meseros.get(0), this.mesas.get(2), this.menus));
+        this.ordenes.get(0).pedido(this.menus.getListaPratillos().get(0));
+        this.ordenes.get(0).pedido(this.menus.getListaPratillos().get(1));
+        this.ordenes.get(0).pedido(this.menus.getListaBebidas().get(0));
+        this.ordenes.get(0).pedido(this.menus.getListaBebidas().get(1));
+
     }
 
     public void contratarMesero(Mesero mesero) {
@@ -139,7 +147,7 @@ public class Restaurante {
         }
     }
 
-    public void mejorEmpleado() {
+    public void mejorEmpleado(String fecha) {
         Mesero empleadoM = new Mesero();
         Cocinero empleadoC = new Cocinero();
         int ordenesM = 0;
@@ -147,14 +155,12 @@ public class Restaurante {
         for (int i = 0; i < this.meseros.size(); i++) {
             Mesero empleadoTemp = this.meseros.get(i);
             int ordenesTemp = 0;
-            for (int j = 0; j < this.ordenes.size(); j++) {
-                if (this.ordenes.get(j).getMeseroAtiende().equals(empleadoTemp)) {
+            for (int j = 0; j < this.facturas.size(); j++) {
+                int fechaF = Integer.parseInt(String.valueOf(this.facturas.get(j).getFecha()).substring(2, 5));
+                if (this.facturas.get(j).getOrden().getMeseroAtiende().equals(empleadoTemp) & fechaF.equals(fecha)) {
                     ordenesTemp++;
-                }
-            }
-            for (int j = 0; j < this.ordenesCanceladas.size(); j++) {
-                if (this.ordenes.get(j).getMeseroAtiende().equals(empleadoTemp)) {
-                    ordenesTemp++;
+                    break;
+
                 }
             }
             if (ordenesTemp >= ordenesM) {
@@ -178,8 +184,8 @@ public class Restaurante {
                 ordenesM = ordenesTemp;
             }
         }
-        JOptionPane.showMessageDialog(null, "El el Mesero del mes es: " + empleadoM.getNombreFull() + " por atender la mayor cantidad de ordenes: " + ordenesM);
-        JOptionPane.showMessageDialog(null, "El el Mesero del mes es: " + empleadoC.getNombreFull() + " por atender la mayor cantidad de ordenes: " + ordenesC);
+        JOptionPane.showMessageDialog(null, "El Mesero del mes es: " + empleadoM.getNombreFull() + " por atender la mayor cantidad de ordenes: " + ordenesM);
+        JOptionPane.showMessageDialog(null, "El Cocinero del mes es: " + empleadoC.getNombreFull() + " por atender la mayor cantidad de ordenes: " + ordenesC);
     }
 
     public void mejoresPlatos() {
@@ -276,19 +282,19 @@ public class Restaurante {
 
     public ArrayList reporteBebida(int fecha) {
         ArrayList resultado = new ArrayList();
-            for (int j = 0; j < this.menus.getListaBebidas().size(); j++) {
-                int contador = 0;
-                resultado.add(this.menus.getListaBebidas().get(j));
-                for (int k = 0; k < this.facturas.size(); k++) {
-                    int fechaF = this.facturas.get(k).getFecha();
-                    if (fechaF == fecha) {
-                        for (int l = 0; l < this.facturas.get(k).getOrden().getBebidas().size(); l++) {
-                            if (this.menus.getListaBebidas().get(j).equals(this.facturas.get(k).getOrden().getBebidas().get(l))) {
-                                contador++;
-                            }
+        for (int j = 0; j < this.menus.getListaBebidas().size(); j++) {
+            int contador = 0;
+            resultado.add(this.menus.getListaBebidas().get(j));
+            for (int k = 0; k < this.facturas.size(); k++) {
+                int fechaF = this.facturas.get(k).getFecha();
+                if (fechaF == fecha) {
+                    for (int l = 0; l < this.facturas.get(k).getOrden().getBebidas().size(); l++) {
+                        if (this.menus.getListaBebidas().get(j).equals(this.facturas.get(k).getOrden().getBebidas().get(l))) {
+                            contador++;
                         }
                     }
-                
+                }
+
                 resultado.add(contador);
             }
         }
