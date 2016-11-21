@@ -35,9 +35,9 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
         initComponents();
         
         //Inicializar ventanas
+        vAtenderCliente = new AtenderCliente(vAgregarCliente,vEscogerMesa,vPedirComida);
         vInfoRes = new infoRest();
         vAgregarEmpleado=new AgregarEmpleado();
-        vAtenderCliente = new AtenderCliente(vAgregarCliente,vEscogerMesa,vPedirComida);
         vAgregarCliente = new AgregarCliente();
         vEscogerMesa = new EscogerMesa();
         vPedirComida = new PedirComida();

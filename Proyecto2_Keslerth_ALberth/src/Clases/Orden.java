@@ -14,16 +14,18 @@ public class Orden {
 
     private Mesero meseroAtiende;
 
-    private Mesa mesaCliente;
+    private int mesaCliente;
 
     private ArrayList<Cliente> clientesAtendidos;
+    
+    private Cliente encargado;
 
     private Menu menu;
 
     public Orden() {
     }
 
-    public Orden(int numero, int numMesa, Mesero meseroAtiende, Mesa mesaCliente, Menu menu) {
+    public Orden(int numero, int numMesa, Mesero meseroAtiende, int mesaCliente, Menu menu) {
         this.numero = numero;
         this.numMesa = numMesa;
         this.platos = new ArrayList();
@@ -95,11 +97,11 @@ public class Orden {
         this.meseroAtiende = meseroAtiende;
     }
 
-    public Mesa getMesaCliente() {
+    public int getMesaCliente() {
         return mesaCliente;
     }
 
-    public void setMesaCliente(Mesa mesaCliente) {
+    public void setMesaCliente(int mesaCliente) {
         this.mesaCliente = mesaCliente;
     }
 
@@ -118,4 +120,13 @@ public class Orden {
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
+
+    public Cliente getEncargado() {
+        return encargado;
+    }
+
+    public void setEncargado(Cliente encargado) {
+        this.encargado = encargado;
+    }
+    
 }

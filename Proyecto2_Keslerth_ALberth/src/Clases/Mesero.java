@@ -26,8 +26,8 @@ public class Mesero extends Persona {
         this.correo=correo;
     }
 
-    public Orden crearOrden(Mesa mesa, Mesero mesero, Menu menu) {
-        Orden orden = new Orden( 0, mesa.getNumAsientos(), this, mesa, menu);
+    public Orden crearOrden(int mesa, Mesero mesero, Menu menu) {
+        Orden orden = new Orden( 0, Main.restaurante.getMesas().get(mesa-1).getCantidad(), this, mesa, menu);
         this.ordenes.add(orden);
         return orden;
     }

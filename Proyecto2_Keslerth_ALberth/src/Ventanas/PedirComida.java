@@ -210,18 +210,14 @@ public class PedirComida extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         for(int i = 0;i<Main.restaurante.getMenus().getListaPratillos().size();i++){
             if(this.jTable1.getValueAt(i, 3).toString().equals("true")){
-                for(int x=0;x<Integer.parseInt(jTable1.getValueAt(i, 2).toString());x++){
-                    Main.ventana.vAtenderCliente.orden.pedido(Main.restaurante.getMenus().getListaPratillos().get(i));
-                    Main.ventana.vAtenderCliente.cantidades.add(Integer.parseInt(this.jTable1.getValueAt(i, 2).toString()));
-                }
+                Main.ventana.vAtenderCliente.orden.pedido(Main.restaurante.getMenus().getListaPratillos().get(i));
+                Main.ventana.vAtenderCliente.cantidades.add(Integer.parseInt(this.jTable1.getValueAt(i, 2).toString()));
             }
         }
         for(int i = 0;i<Main.restaurante.getMenus().getListaBebidas().size();i++){
             if(this.jTable2.getValueAt(i, 4).toString().equals("true")){
-                for(int x=0;x<Integer.parseInt(jTable2.getValueAt(i, 3).toString());x++){
-                    Main.ventana.vAtenderCliente.orden.pedido(Main.restaurante.getMenus().getListaBebidas().get(i));
-                    Main.ventana.vAtenderCliente.cantidades.add(Integer.parseInt(this.jTable2.getValueAt(i, 3).toString()));
-                }
+                Main.ventana.vAtenderCliente.orden.pedido(Main.restaurante.getMenus().getListaBebidas().get(i));
+                Main.ventana.vAtenderCliente.cantidades.add(Integer.parseInt(this.jTable2.getValueAt(i, 3).toString()));
             }
         }
         verPlatos();

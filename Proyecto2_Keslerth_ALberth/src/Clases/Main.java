@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 public class Main {
     public static vPrincipal ventana;
     public static Restaurante restaurante;
+    public Fabrica factory=new Fabrica();
     static ArrayList direccion;
     /**
      * @param args the command line arguments
