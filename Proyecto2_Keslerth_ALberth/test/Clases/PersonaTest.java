@@ -117,57 +117,5 @@ public class PersonaTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getDireccion method, of class Persona.
-     */
-    @Test
-    public void testGetDireccion() {
-        String expResult = "";
-        String result = instance.getDireccion();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setDireccion method, of class Persona.
-     */
-    @Test
-    public void testSetDireccion() {
-        System.out.println("setDireccion");
-        String direccion = "";
-        Persona instance = new Persona();
-        instance.setDireccion(direccion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getCorreo method, of class Persona.
-     */
-    @Test
-    public void testGetCorreo() {
-        System.out.println("getCorreo");
-        Persona instance = new Persona();
-        String expResult = "";
-        String result = instance.getCorreo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setCorreo method, of class Persona.
-     */
-    @Test
-    public void testSetCorreo() {
-        System.out.println("setCorreo");
-        String correo = "";
-        Persona instance = new Persona();
-        instance.setCorreo(correo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

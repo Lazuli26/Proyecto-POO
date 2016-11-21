@@ -22,6 +22,14 @@ public class FacturaTest {
     
     public FacturaTest() {
     }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
     
     @Before
     public void setUp() {
@@ -164,6 +172,19 @@ public class FacturaTest {
         Orden orden = new Orden(2, 1, null,  null,null);
         factura.setOrden(orden);
         assertEquals("El cambio de orden es erronea",orden.getNumero(), factura.getOrden().getNumero(),0);
+    }
+
+    /**
+     * Test of agregarClienteFact method, of class Factura.
+     */
+    @Test
+    public void testAgregarClienteFact() {
+        System.out.println("agregarClienteFact");
+        Cliente cliente = null;
+        Factura instance = new Factura();
+        instance.agregarClienteFact(cliente);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }

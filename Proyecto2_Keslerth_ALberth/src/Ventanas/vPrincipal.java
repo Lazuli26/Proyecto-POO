@@ -8,8 +8,6 @@ package Ventanas;
 import Clases.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -17,54 +15,39 @@ import javax.swing.JOptionPane;
  *
  * @author keslerth
  */
-public class vPrincipal extends javax.swing.JFrame {
-    public static Restaurante restaurante;
-    ArrayList direccion;
-    String path;  
-    URL url;
-    ImageIcon foto;
-    
+public class vPrincipal extends javax.swing.JFrame {static String path;  
+    static Object Main;
     infoRest vInfoRes;
     public AtenderCliente vAtenderCliente;
-    public AgregarEmpleado vAgregarEmpleado;
-    public VerEmpleados vAVerEmpleado;
-    public AgregarCliente vAgregarCliente;
-    public EscogerMesa vEscogerMesa;
-    public PedirComida vPedirComida;
+    AgregarEmpleado vAgregarEmpleado;
+    VerEmpleados vAVerEmpleado;
+    AgregarCliente vAgregarCliente;
+    EscogerMesa vEscogerMesa;
+    PedirComida vPedirComida;
+    ArrayList<Mesero> meseros;
+    ArrayList<Cocinero> cocineros;
+    ArrayList<Cliente> clientes;
     
     /**
      * Creates new form vPrincipal
      */
     public vPrincipal() {
         initComponents();
-        //Direccion------
-        direccion = new ArrayList();
-        direccion.add("Alajuela");
-        direccion.add("San Carlos");
-        direccion.add("Quesada");
-        direccion.add("300m liceo SC");
-        //Direccion-------
-        //Foto---
-        path = "/images/queso.png";
-        url = this.getClass().getResource(path);
-        foto = new ImageIcon(url);
-        //Foto---
-        //Mesero---
-        restaurante = new Restaurante("Cheese Restaurante", foto, 86360027, direccion, "cheeseres@gmail.com");
+        
         //Inicializar ventanas
-        vInfoRes = new infoRest(restaurante);
+        vInfoRes = new infoRest();
         vAgregarEmpleado=new AgregarEmpleado();
-        vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
-        vAgregarCliente = new AgregarCliente(restaurante, vAtenderCliente);
-        vEscogerMesa = new EscogerMesa(restaurante, vAtenderCliente);
-        vPedirComida = new PedirComida(restaurante);
-        vAVerEmpleado=new VerEmpleados(restaurante);
-        //Agregar ventanas al Escritorio
+        vAtenderCliente = new AtenderCliente(vAgregarCliente,vEscogerMesa,vPedirComida);
+        vAgregarCliente = new AgregarCliente();
+        vEscogerMesa = new EscogerMesa();
+        vPedirComida = new PedirComida();
+        vAVerEmpleado=new VerEmpleados();
+        //Agregar ventanas al 
         this.jDesktopPane1.add(vAgregarCliente);
         this.jDesktopPane1.add(vEscogerMesa);
         this.jDesktopPane1.add(vPedirComida);
+        this.jDesktopPane1.add(vInfoRes);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,6 +72,7 @@ public class vPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuCoc = new javax.swing.JMenu();
         jMenuCli = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,12 +87,12 @@ public class vPrincipal extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNomMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(814, Short.MAX_VALUE))
+                .addContainerGap(716, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(463, Short.MAX_VALUE)
+                .addContainerGap(548, Short.MAX_VALUE)
                 .addComponent(lblNomMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -177,7 +161,16 @@ public class vPrincipal extends javax.swing.JFrame {
         jMenuCoc.setText("Cocinero");
         jMenuBar1.add(jMenuCoc);
 
-        jMenuCli.setText("Cliente");
+        jMenuCli.setText("Reportes");
+
+        jMenuItem7.setText("Mejores empleados");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenuCli.add(jMenuItem7);
+
         jMenuBar1.add(jMenuCli);
 
         setJMenuBar(jMenuBar1);
@@ -203,28 +196,29 @@ public class vPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        int mesero = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la cedula, mesero"));
-        for(int i = 0;i<restaurante.getMeseros().size();i++){
+        try{
+            int mesero = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la cedula, mesero"));
+            for(int i = 0;i<Clases.Main.restaurante.getMeseros().size();i++){
 
-            if(restaurante.getMeseros().get(i).getCedula() == mesero){
-                vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
-                this.jDesktopPane1.add(vAtenderCliente);
-                vAtenderCliente.show();
-                AtenderCliente.orden.setMeseroAtiende(restaurante.getMeseros().get(i));
-                this.lblNomMesero.setText(restaurante.getMeseros().get(i).getNombreFull());
+                if(Clases.Main.restaurante.getMeseros().get(i).getCedula() == mesero){
+                    vAtenderCliente = new AtenderCliente(vAgregarCliente,vEscogerMesa,vPedirComida);
+                    this.jDesktopPane1.add(vAtenderCliente);
+                    vAtenderCliente.show();
+                    Clases.Main.ventana.vAtenderCliente.orden.setMeseroAtiende(Clases.Main.restaurante.getMeseros().get(i));
+                    this.lblNomMesero.setText(Clases.Main.restaurante.getMeseros().get(i).getNombreFull());
+                }
+
             }
+        }
+        catch(Exception e){
+            
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
+    
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         vAgregarEmpleado.dispose();
@@ -236,11 +230,19 @@ public class vPrincipal extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         vAVerEmpleado.dispose();
-        vAVerEmpleado=new VerEmpleados(restaurante);
-        vAVerEmpleado.actualizar();
+        vAVerEmpleado=new VerEmpleados();
         this.jDesktopPane1.add(vAVerEmpleado);
         vAVerEmpleado.show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,9 +278,6 @@ public class vPrincipal extends javax.swing.JFrame {
             }
         });
     }
-    public static Restaurante getRestaurante(){
-        return restaurante;
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
@@ -291,6 +290,7 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenu jMenuMes;
     private javax.swing.JMenu jMenuRes;
     private javax.swing.JPopupMenu jPopupMenu1;

@@ -1,6 +1,7 @@
 package Clases;
 
 import Ventanas.vPrincipal;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -36,10 +37,13 @@ import javax.swing.JOptionPane;
     public Restaurante() {
     }
 
-    public Restaurante(String nombre, ImageIcon logo, int telefono, ArrayList direccion, String correo) {
+    public Restaurante(String nombre, int telefono, ArrayList direccion, String correo) {
         //Mesero---
         this.nombre = nombre;
-        this.logo = logo;
+        String path = "/images/queso.png";
+        URL url=this.getClass().getResource(path);
+        ImageIcon foto=new ImageIcon(url);
+        this.logo = foto;
         this.telefono = telefono;
         this.direccion = direccion;
         this.correo = correo;
@@ -56,7 +60,7 @@ import javax.swing.JOptionPane;
         this.mesas.add(new Mesa(2, 2, true));
         this.mesas.add(new Mesa(3, 7, true));
         this.menus.agregarPlato(new Plato(1, "Arroz", "Arroz, Sal, Agua", 200, 300, "Bueno", null));
-        this.menus.agregarPlato(new Plato(1, "Bisec", "Carne, Aceite,", 200, 300, "Recien hecha", null));
+        this.menus.agregarPlato(new Plato(2, "Bisec", "Carne, Aceite,", 200, 300, "Recien hecha", null));
         this.menus.agregarBebida(new Bebida("Coca Cola", 500, 350));
         this.menus.agregarBebida(new Bebida("Agua con hielo", 0, 350));
         this.menus.agregarBebida(new Bebida("Te frío", 500, 600));
@@ -275,19 +279,19 @@ import javax.swing.JOptionPane;
 
     public ArrayList reporteBebida(int fecha) {
         ArrayList resultado = new ArrayList();
-        for (int j = 0; j < this.menus.getListaBebidas().size(); j++) {
-            int contador = 0;
-            resultado.add(this.menus.getListaBebidas().get(j));
-            for (int k = 0; k < this.facturas.size(); k++) {
-                int fechaF = this.facturas.get(k).getFecha();
-                if (fechaF == fecha) {
-                    for (int l = 0; l < this.facturas.get(k).getOrden().getBebidas().size(); l++) {
-                        if (this.menus.getListaBebidas().get(j).equals(this.facturas.get(k).getOrden().getBebidas().get(l))) {
-                            contador++;
+            for (int j = 0; j < this.menus.getListaBebidas().size(); j++) {
+                int contador = 0;
+                resultado.add(this.menus.getListaBebidas().get(j));
+                for (int k = 0; k < this.facturas.size(); k++) {
+                    int fechaF = this.facturas.get(k).getFecha();
+                    if (fechaF == fecha) {
+                        for (int l = 0; l < this.facturas.get(k).getOrden().getBebidas().size(); l++) {
+                            if (this.menus.getListaBebidas().get(j).equals(this.facturas.get(k).getOrden().getBebidas().get(l))) {
+                                contador++;
+                            }
                         }
                     }
-                }
-
+                
                 resultado.add(contador);
             }
         }

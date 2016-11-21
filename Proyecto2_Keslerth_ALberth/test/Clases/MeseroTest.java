@@ -22,6 +22,14 @@ public class MeseroTest {
     
     public MeseroTest() {
     }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
     
     @Before
     public void setUp() {
@@ -97,6 +105,23 @@ public class MeseroTest {
         ordenes.add(orden);
         mesero.setOrdenes(ordenes);
         assertEquals("Cambio de ordenes son erroneas",ordenes, mesero.getOrdenes());
+    }
+
+    /**
+     * Test of crearOrden method, of class Mesero.
+     */
+    @Test
+    public void testCrearOrden() {
+        System.out.println("crearOrden");
+        Mesa mesa = null;
+        Mesero mesero = null;
+        Menu menu = null;
+        Mesero instance = new Mesero();
+        Orden expResult = null;
+        Orden result = instance.crearOrden(mesa, mesero, menu);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }

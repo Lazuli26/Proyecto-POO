@@ -34,7 +34,10 @@ public class Orden {
         this.menu = menu;
     }
     
-
+    public void pedido(Bebida bebida) {
+        this.bebidas.add(bebida);
+    }
+    
     public void pedido(Plato plato) {
         this.platos.add(plato);
     }
@@ -51,9 +54,6 @@ public class Orden {
         }
     }
 
-    public void pedido(Bebida bebida) {
-        this.bebidas.add(bebida);
-    }
 
     public int getNumero() {
         return numero;

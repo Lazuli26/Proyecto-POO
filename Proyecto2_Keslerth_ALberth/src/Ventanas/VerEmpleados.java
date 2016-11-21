@@ -16,30 +16,30 @@ public class VerEmpleados extends javax.swing.JInternalFrame {
     /**
      * Creates new form VerEmpleados
      */
-    public VerEmpleados(Restaurante restaurante) {
+    public VerEmpleados() {
         initComponents();
         this.actualizar();
         }
     
     public void actualizar(){
-        jTable1.setSize(6, vPrincipal.getRestaurante().getCocineros().size()+vPrincipal.getRestaurante().getMeseros().size());
-        for(int x=0;x<vPrincipal.getRestaurante().getCocineros().size();x++){
-            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getCedula(), x, 0);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getNombreFull(), x, 1);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getTelefono(), x, 2);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getDireccion(), x, 3);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getCorreo(), x, 4);
+        jTable1.setSize(6, Main.restaurante.getCocineros().size()+Main.restaurante.getMeseros().size());
+        for(int x=0;x<Main.restaurante.getCocineros().size();x++){
+            jTable1.setValueAt(Main.restaurante.getCocineros().get(x).getCedula(), x, 0);
+            jTable1.setValueAt(Main.restaurante.getCocineros().get(x).getNombreFull(), x, 1);
+            jTable1.setValueAt(Main.restaurante.getCocineros().get(x).getTelefono(), x, 2);
+            jTable1.setValueAt(Main.restaurante.getCocineros().get(x).getDireccion(), x, 3);
+            jTable1.setValueAt(Main.restaurante.getCocineros().get(x).getCorreo(), x, 4);
             jTable1.setValueAt("Irrelevante", x, 5);
             jTable1.setValueAt("Cocinero", x, 6);
             }
-        int y=vPrincipal.getRestaurante().getCocineros().size();
-        for(int x=0;x<vPrincipal.getRestaurante().getMeseros().size();x++){
-            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getCedula(), x+y, 0);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getNombreFull(), x+y, 1);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getTelefono(), x+y, 2);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getDireccion(), x+y, 3);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getCorreo(), x+y, 4);
-            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getIdiomas(), x+y, 5);
+        int y=Main.restaurante.getCocineros().size();
+        for(int x=0;x<Main.restaurante.getMeseros().size();x++){
+            jTable1.setValueAt(Main.restaurante.getMeseros().get(x).getCedula(), x+y, 0);
+            jTable1.setValueAt(Main.restaurante.getMeseros().get(x).getNombreFull(), x+y, 1);
+            jTable1.setValueAt(Main.restaurante.getMeseros().get(x).getTelefono(), x+y, 2);
+            jTable1.setValueAt(Main.restaurante.getMeseros().get(x).getDireccion(), x+y, 3);
+            jTable1.setValueAt(Main.restaurante.getMeseros().get(x).getCorreo(), x+y, 4);
+            jTable1.setValueAt(Main.restaurante.getMeseros().get(x).getIdiomas(), x+y, 5);
             jTable1.setValueAt("Mesero", x+y, 6);
             }
     }

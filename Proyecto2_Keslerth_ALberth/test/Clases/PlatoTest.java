@@ -5,7 +5,6 @@
  */
 package Clases;
 
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -99,8 +98,8 @@ public class PlatoTest {
     public void testGetIngredientes() {
         System.out.println("getIngredientes");
         Plato instance = new Plato();
-        ArrayList expResult = null;
-        ArrayList result = instance.getIngredientes();
+        String expResult = "";
+        String result = instance.getIngredientes();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -112,7 +111,7 @@ public class PlatoTest {
     @Test
     public void testSetIngredientes() {
         System.out.println("setIngredientes");
-        ArrayList ingredientes = null;
+        String ingredientes = "";
         Plato instance = new Plato();
         instance.setIngredientes(ingredientes);
         // TODO review the generated test code and remove the default call to fail.

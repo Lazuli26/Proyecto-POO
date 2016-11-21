@@ -157,7 +157,7 @@ public class AgregarEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if(jComboBox1.getSelectedIndex()==0){
             try{
-                vPrincipal.getRestaurante().contratarMesero(new Mesero(jTextField6.getText(), jTextField1.getText(),Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField3.getText()), jTextField5.getText(), jTextField4.getText()));
+                Main.restaurante.contratarMesero(new Mesero(jTextField6.getText(), jTextField1.getText(),Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField3.getText()), jTextField5.getText(), jTextField4.getText()));
                 jLabel7.setText("");
                 this.dispose();
             }
@@ -167,7 +167,7 @@ public class AgregarEmpleado extends javax.swing.JInternalFrame {
         }
         else{
             try{
-                vPrincipal.getRestaurante().contratarCocinero(new Cocinero(jTextField1.getText(),Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField3.getText()), jTextField5.getText(), jTextField4.getText()));
+                Main.restaurante.contratarCocinero(new Cocinero(jTextField1.getText(),Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField3.getText()), jTextField5.getText(), jTextField4.getText()));
                 jLabel7.setText("");
                 this.dispose();
             }
