@@ -19,14 +19,12 @@ import java.util.List;
 public class AgregarCliente extends javax.swing.JInternalFrame {
     static int numCliente = 1;
     Restaurante res;
-    AtenderCliente vAtender;
     /**
      * Creates new form AgregarCliente
      */
-    public AgregarCliente(Restaurante restaurante, AtenderCliente vAtender) {
+    public AgregarCliente(Restaurante restaurante) {
         initComponents();
         res = restaurante;
-        this.vAtender = vAtender;
         this.jLabel7.setText(String.valueOf(numCliente));
         
     }

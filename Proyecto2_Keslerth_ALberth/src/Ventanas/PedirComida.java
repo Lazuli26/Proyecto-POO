@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Clases.Restaurante;
+import static Ventanas.vPrincipal.vAtenderCliente;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,25 +21,27 @@ public class PedirComida extends javax.swing.JInternalFrame {
     public PedirComida(Restaurante restaurante) {
         initComponents();
         res = restaurante;
-        DefaultTableModel modeloP = (DefaultTableModel) this.jTable1.getModel();
-        DefaultTableModel modeloB = (DefaultTableModel) this.jTable1.getModel();
-        verPlatos(modeloP);
-        verBebidas(modeloB);
-        
+        verPlatos();
+        verBebidas();
     }
     
-    public void verPlatos(DefaultTableModel model){
+    public void verPlatos(){
         for(int i = 0;i<res.getMenus().getListaPratillos().size();i++){
-            model.addRow(new Object[]{res.getMenus().getListaPratillos().get(i).getNomPlato(),res.getMenus().getListaPratillos().get(i).getPrecioSinImpuesto(),0,false});
+            this.jTable1.setValueAt(res.getMenus().getListaPratillos().get(i).getNomPlato(), i, 0);
+            this.jTable1.setValueAt(res.getMenus().getListaPratillos().get(i).getPrecioSinImpuesto(), i, 1);
+            this.jTable1.setValueAt(0, i, 2);
+            this.jTable1.setValueAt(false, i, 3);
         }
-        this.jTable1.setModel(model);
     }
 
-    public void verBebidas(DefaultTableModel model){
+    public void verBebidas(){
         for(int i = 0;i<res.getMenus().getListaBebidas().size();i++){
-            model.addRow(new Object[]{res.getMenus().getListaBebidas().get(i).getTipo(),res.getMenus().getListaBebidas().get(i).getPrecio(),0,res.getMenus().getListaBebidas().get(i).getPesoML(),false});
+            this.jTable2.setValueAt(res.getMenus().getListaBebidas().get(i).getTipo(), i, 0);
+            this.jTable2.setValueAt(res.getMenus().getListaBebidas().get(i).getPrecio(), i, 1);
+            this.jTable2.setValueAt(res.getMenus().getListaBebidas().get(i).getPesoML(), i, 2);
+            this.jTable2.setValueAt(0, i, 3);
+            this.jTable2.setValueAt(false, i, 4);
         }
-        this.jTable2.setModel(model);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +62,26 @@ public class PedirComida extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Descripcion", "Precio", "Cantidad", "ok"
@@ -86,17 +108,36 @@ public class PedirComida extends javax.swing.JInternalFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Descripcion", "Precio", "Cantidad", "mL", "ok"
+                "Descripcion", "Precio", "mL", "Cantidad", "ok"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true
+                false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -110,8 +151,18 @@ public class PedirComida extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Pedir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,10 +177,9 @@ public class PedirComida extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(39, 39, 39)))
+                        .addGap(45, 45, 45)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addComponent(jButton2)
                         .addContainerGap())
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)))
@@ -138,18 +188,44 @@ public class PedirComida extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(0, 11, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(0, 34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        verPlatos();
+        verBebidas();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        for(int i = 0;i<res.getMenus().getListaPratillos().size();i++){
+            if(this.jTable1.getValueAt(i, 3).toString().equals("true")){
+                AtenderCliente.orden.pedido(res.getMenus().getListaPratillos().get(i));
+                AtenderCliente.cantidades.add(Integer.parseInt(this.jTable1.getValueAt(i, 2).toString()));
+            }
+        }
+        for(int i = 0;i<res.getMenus().getListaBebidas().size();i++){
+            if(this.jTable2.getValueAt(i, 4).toString().equals("true")){
+                AtenderCliente.orden.pedido(res.getMenus().getListaBebidas().get(i));
+                AtenderCliente.cantidades.add(Integer.parseInt(this.jTable2.getValueAt(i, 3).toString()));
+            }
+        }
+        verPlatos();
+        verBebidas();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

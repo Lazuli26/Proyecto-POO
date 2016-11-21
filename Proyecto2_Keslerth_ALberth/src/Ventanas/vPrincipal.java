@@ -58,8 +58,8 @@ public class vPrincipal extends javax.swing.JFrame {
         vInfoRes = new infoRest(restaurante);
         vAgregarEmpleado=new AgregarEmpleado();
         vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
-        vAgregarCliente = new AgregarCliente(restaurante, vAtenderCliente);
-        vEscogerMesa = new EscogerMesa(restaurante, vAtenderCliente);
+        vAgregarCliente = new AgregarCliente(restaurante);
+        vEscogerMesa = new EscogerMesa(restaurante);
         vPedirComida = new PedirComida(restaurante);
         vAVerEmpleado=new VerEmpleados();
         //Agregar ventanas al Escritorio
@@ -106,12 +106,12 @@ public class vPrincipal extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNomMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(533, Short.MAX_VALUE))
+                .addContainerGap(716, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(463, Short.MAX_VALUE)
+                .addContainerGap(548, Short.MAX_VALUE)
                 .addComponent(lblNomMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

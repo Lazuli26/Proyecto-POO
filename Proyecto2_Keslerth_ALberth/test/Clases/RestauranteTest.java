@@ -84,9 +84,16 @@ public class RestauranteTest {
     @Test
     public void testFacturar() {
         System.out.println("facturar");
+        int fecha = 0;
+        int hora = 0;
+        String formaPago = "";
+        String detalle = "";
+        ArrayList<Cliente> clientes = null;
         Orden ordenCliente = null;
         Restaurante instance = new Restaurante();
-        instance.facturar(ordenCliente);
+        Factura expResult = null;
+        Factura result = instance.facturar(fecha, hora, formaPago, detalle, clientes, ordenCliente);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -118,19 +125,6 @@ public class RestauranteTest {
     }
 
     /**
-     * Test of agregarMenu method, of class Restaurante.
-     */
-    @Test
-    public void testAgregarMenu() {
-        System.out.println("agregarMenu");
-        Menu menu = null;
-        Restaurante instance = new Restaurante();
-        instance.agregarMenu(menu);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of Pagar method, of class Restaurante.
      */
     @Test
@@ -139,8 +133,11 @@ public class RestauranteTest {
         ArrayList<Cliente> clientes = null;
         ArrayList<Plato> platos = null;
         ArrayList<Bebida> bebidas = null;
+        int numOrden = 0;
         Restaurante instance = new Restaurante();
-        instance.Pagar(clientes, platos, bebidas);
+        int expResult = 0;
+        int result = instance.Pagar(clientes, platos, bebidas, numOrden);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -211,8 +208,11 @@ public class RestauranteTest {
     @Test
     public void testReportePlato() {
         System.out.println("reportePlato");
+        int mesAno = 0;
         Restaurante instance = new Restaurante();
-        instance.reportePlato();
+        ArrayList expResult = null;
+        ArrayList result = instance.reportePlato(mesAno);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -223,8 +223,11 @@ public class RestauranteTest {
     @Test
     public void testReporteBebida() {
         System.out.println("reporteBebida");
+        int fecha = 0;
         Restaurante instance = new Restaurante();
-        instance.reporteBebida();
+        ArrayList expResult = null;
+        ArrayList result = instance.reporteBebida(fecha);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -235,8 +238,11 @@ public class RestauranteTest {
     @Test
     public void testReporteVendido() {
         System.out.println("reporteVendido");
+        int ano = 0;
         Restaurante instance = new Restaurante();
-        instance.reporteVendido();
+        ArrayList expResult = null;
+        ArrayList result = instance.reporteVendido(ano);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -247,8 +253,11 @@ public class RestauranteTest {
     @Test
     public void testReporteClientes() {
         System.out.println("reporteClientes");
+        int ano = 0;
         Restaurante instance = new Restaurante();
-        instance.reporteClientes();
+        ArrayList expResult = null;
+        ArrayList result = instance.reporteClientes(ano);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -530,8 +539,8 @@ public class RestauranteTest {
     public void testGetMenus() {
         System.out.println("getMenus");
         Restaurante instance = new Restaurante();
-        ArrayList<Menu> expResult = null;
-        ArrayList<Menu> result = instance.getMenus();
+        Menu expResult = null;
+        Menu result = instance.getMenus();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -543,9 +552,22 @@ public class RestauranteTest {
     @Test
     public void testSetMenus() {
         System.out.println("setMenus");
-        ArrayList<Menu> menus = null;
+        Menu menus = null;
         Restaurante instance = new Restaurante();
         instance.setMenus(menus);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getInstance method, of class Restaurante.
+     */
+    @Test
+    public void testGetInstance() {
+        System.out.println("getInstance");
+        Restaurante expResult = null;
+        Restaurante result = Restaurante.getInstance();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

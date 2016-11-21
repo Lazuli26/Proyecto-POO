@@ -18,7 +18,7 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
     /**
      * Creates new form EscogerMesa
      */
-    public EscogerMesa(Restaurante restaurante, AtenderCliente vAtender) {
+    public EscogerMesa(Restaurante restaurante) {
         initComponents();
         res = restaurante;
         this.vAtender = vAtender;

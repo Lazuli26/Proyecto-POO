@@ -58,7 +58,7 @@ public class Restaurante {
         this.mesas.add(new Mesa(2, 2, true));
         this.mesas.add(new Mesa(3, 7, true));
         this.menus.agregarPlato(new Plato(1, "Arroz", "Arroz, Sal, Agua", 200, 300, "Bueno", null));
-        this.menus.agregarPlato(new Plato(1, "Bisec", "Carne, Aceite,", 200, 300, "Recien hecha", null));
+        this.menus.agregarPlato(new Plato(2, "Bisec", "Carne, Aceite,", 200, 300, "Recien hecha", null));
         this.menus.agregarBebida(new Bebida("Coca Cola", 500, 350));
         this.menus.agregarBebida(new Bebida("Agua con hielo", 0, 350));
         this.menus.agregarBebida(new Bebida("Te frío", 500, 600));
@@ -276,19 +276,19 @@ public class Restaurante {
 
     public ArrayList reporteBebida(int fecha) {
         ArrayList resultado = new ArrayList();
-        for (int j = 0; j < this.menus.getListaBebidas().size(); j++) {
-            int contador = 0;
-            resultado.add(this.menus.getListaBebidas().get(j));
-            for (int k = 0; k < this.facturas.size(); k++) {
-                int fechaF = this.facturas.get(k).getFecha();
-                if (fechaF == fecha) {
-                    for (int l = 0; l < this.facturas.get(k).getOrden().getBebidas().size(); l++) {
-                        if (this.menus.getListaBebidas().get(j).equals(this.facturas.get(k).getOrden().getBebidas().get(l))) {
-                            contador++;
+            for (int j = 0; j < this.menus.getListaBebidas().size(); j++) {
+                int contador = 0;
+                resultado.add(this.menus.getListaBebidas().get(j));
+                for (int k = 0; k < this.facturas.size(); k++) {
+                    int fechaF = this.facturas.get(k).getFecha();
+                    if (fechaF == fecha) {
+                        for (int l = 0; l < this.facturas.get(k).getOrden().getBebidas().size(); l++) {
+                            if (this.menus.getListaBebidas().get(j).equals(this.facturas.get(k).getOrden().getBebidas().get(l))) {
+                                contador++;
+                            }
                         }
                     }
-                }
-
+                
                 resultado.add(contador);
             }
         }

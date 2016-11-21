@@ -23,6 +23,14 @@ public class BebidaTest {
     public BebidaTest() {
     }
 
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
     @Before
     public void setUp() {
         bebida = new Bebida("Pepsi", 1000, 2500);
