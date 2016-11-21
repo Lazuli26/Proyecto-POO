@@ -55,4 +55,21 @@ public class Mesero extends Persona {
     public void setOrdenes(ArrayList<Orden> ordenes) {
         this.ordenes = ordenes;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    
 }

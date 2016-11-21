@@ -31,4 +31,21 @@ public class Cocinero extends Persona {
     public void setOrdenesCocinar(ArrayList<Orden> ordenesCocinar) {
         this.ordenesCocinar = ordenesCocinar;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    
 }

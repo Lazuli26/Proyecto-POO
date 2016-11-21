@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Main;
 import Clases.Restaurante;
 
 /**
@@ -183,6 +184,7 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
                 break;
             }
         }
+        Main.ventana.vAtenderCliente.actualizarMesa();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -4,18 +4,19 @@
  * and open the template in the editor.
  */
 package Clases;
-
+import Ventanas.*;
 /**
  *
  * @author keslerth
  */
-public class Proyecto2_Keslerth_ALberth {
 
+public class Main {
+    public static vPrincipal ventana=new vPrincipal();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ventana.show();
     }
-    
 }

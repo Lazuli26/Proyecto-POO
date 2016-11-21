@@ -17,7 +17,6 @@ import java.util.List;
  * @author keslerth
  */
 public class AgregarCliente extends javax.swing.JInternalFrame {
-    static int numCliente = 1;
     Restaurante res;
     AtenderCliente vAtender;
     /**
@@ -27,12 +26,12 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
         initComponents();
         res = restaurante;
         this.vAtender = vAtender;
-        this.jLabel7.setText(String.valueOf(numCliente));
+        this.jLabel7.setText(String.valueOf(vPrincipal.getRestaurante().getClientes().size()));
         
     }
     
     public void txtBlancos(){
-        this.jLabel7.setText(String.valueOf(numCliente));
+        this.jLabel7.setText(String.valueOf(vPrincipal.getRestaurante().getClientes().size()));
         this.txtNombre.setText("");
         this.txtCedula.setText("");
         this.txtTelefono.setText("");
@@ -153,10 +152,19 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cliente cliente = new Cliente(numCliente, AtenderCliente.orden, 1, this.txtNombre.getText(), Integer.parseInt(this.txtCedula.getText()), Integer.parseInt(this.txtTelefono.getText()));
-        numCliente+=1;
-        AtenderCliente.orden.grupoClientes(cliente);
+        for(Cliente cliente:vPrincipal.getRestaurante().getClientes()){
+            if(cliente.getNombreFull().equals(this.txtNombre.getText())){
+                txtBlancos();
+                this.setVisible(false);
+                this.jLabel7.setText("Este nombre ya existe!");
+                System.out.println("Este nombre ya existe!");
+                return;
+            }
+        }
+        System.out.println("Procede de igual forma");
+        vPrincipal.getRestaurante().nuevoCliente(new Cliente(vPrincipal.getRestaurante().getClientes().size(), AtenderCliente.orden, 1, this.txtNombre.getText(), Integer.parseInt(this.txtCedula.getText()), Integer.parseInt(this.txtTelefono.getText())));
         txtBlancos();
+        Clases.Main.ventana.vAtenderCliente.llenarCombo();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

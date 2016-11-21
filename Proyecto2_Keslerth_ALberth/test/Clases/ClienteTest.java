@@ -35,8 +35,8 @@ public class ClienteTest {
         ArrayList<Bebida> bebidas = new ArrayList();
         bebidas.add(bebida);
         ArrayList<Cliente> clientesAtendidos = new ArrayList();
-        Orden orden = new Orden(1, 1, platos, bebidas, meseroAtiende, mesaCliente,  clientesAtendidos, menu);
-        cliente = new Cliente(1, orden, 5, "Keslerth Calderón Artavia", 207610010, 86360027, "300m oeste del Liceo SC", "keslerth.c@gmail.com");
+        Orden orden = new Orden(1, 1, meseroAtiende, mesaCliente, menu);
+        cliente = new Cliente(1, orden, 5, "Keslerth Calderón Artavia", 207610010, 86360027);
     }
     
     @After
@@ -89,7 +89,7 @@ public class ClienteTest {
      */
     @Test
     public void testGetOrden() {
-        Orden expResult = new Orden(1, 1, null, null, null, null,  null, null);
+        Orden expResult = new Orden(1, 1, null,  null, null);
         Orden result = cliente.getOrden();
         assertEquals("La orden es erronea",expResult.getNumero(), result.getNumero(),0);
     }
@@ -99,7 +99,7 @@ public class ClienteTest {
      */
     @Test
     public void testSetOrden() {
-        Orden orden = new Orden(1, 1, null, null, null, null,  null, null);
+        Orden orden = new Orden(1, 1, null,  null, null);
         cliente.setOrden(orden);
         assertEquals("El cambio de orden es erroneo",orden, cliente.getOrden());
     }

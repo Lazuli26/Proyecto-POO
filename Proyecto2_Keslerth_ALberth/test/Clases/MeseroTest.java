@@ -25,11 +25,9 @@ public class MeseroTest {
     
     @Before
     public void setUp() {
-        ArrayList idiomas = new ArrayList();
-        idiomas.add("Español");
         ArrayList<Cliente> clientesAtender = new ArrayList();
         ArrayList<Orden> ordenes = new ArrayList();
-        mesero = new Mesero(idiomas, clientesAtender, ordenes, "Juancho Perez", 102340333, 89008900, "El oeste del Chiguagua", "juanchop@gmail.com");
+        mesero = new Mesero("Español", "Juancho Perez", 102340333, 89008900, "El oeste del Chiguagua", "juanchop@gmail.com");
     }
     
     @After
@@ -37,27 +35,12 @@ public class MeseroTest {
     }
 
     /**
-     * Test of crearOrden method, of class Mesero.
-     */
-    @Test
-    public void testCrearOrden() {
-        Cliente cliente = null;
-        Mesa mesa = null;
-        Mesero mesero = null;
-        Menu menu = null;
-        Orden expResult = null;
-        Orden result = mesero.crearOrden(cliente, mesa, mesero, menu);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of getIdiomas method, of class Mesero.
      */
     @Test
     public void testGetIdiomas() {
-        ArrayList expResult = new ArrayList();
-        expResult.add("Español");
-        ArrayList result = mesero.getIdiomas();
+        String expResult = "Español";
+        String result = mesero.getIdiomas();
         assertEquals("Idioma es erroneo", expResult, result);
     }
 
@@ -66,8 +49,7 @@ public class MeseroTest {
      */
     @Test
     public void testSetIdiomas() {
-        ArrayList idiomas = new ArrayList();
-        idiomas.add("Italiano");
+        String idiomas = "Italiano";
         mesero.setIdiomas(idiomas);
         assertEquals("Idioma es erroneo", idiomas, mesero.getIdiomas());
         

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class Restaurante {
+    public class Restaurante {
 
     private String nombre;
 
@@ -37,7 +37,6 @@ public class Restaurante {
     }
 
     public Restaurante(String nombre, ImageIcon logo, int telefono, ArrayList direccion, String correo) {
-        String idiomasM1="Español";
         //Mesero---
         this.nombre = nombre;
         this.logo = logo;
@@ -46,7 +45,7 @@ public class Restaurante {
         this.correo = correo;
         this.clientes = clientes;
         this.meseros = new ArrayList<Mesero>();
-        this.clientes=new ArrayList<Cliente>();
+        this.clientes = new ArrayList<Cliente>();
         this.cocineros = new ArrayList<Cocinero>();
         this.ordenes = new ArrayList<Orden>();
         this.ordenesCanceladas = new ArrayList();
@@ -89,10 +88,6 @@ public class Restaurante {
 
     public void agregarMesas(Mesa mesa) {
         this.mesas.add(mesa);
-    }
-
-    public void agregarMenu(Menu menu) {
-        this.menus.add(menu);
     }
 
     public int Pagar(ArrayList<Cliente> clientes, ArrayList<Plato> platos, ArrayList<Bebida> bebidas, int numOrden) {
@@ -191,32 +186,31 @@ public class Restaurante {
         Plato plato2 = new Plato();
         int numPlato1 = 0;
         int numPlato2 = 0;
-        for (int k = 0; k < this.menus.size(); k++) {
-            for (int l = 0; l < this.menus.get(k).getListaPratillos().size(); l++) {
-                Plato platoTemp = this.menus.get(k).getListaPratillos().get(l);
-                int numPlatoTemp = 0;
-                for (int i = 0; i < this.facturas.size(); i++) {
-                    for (int j = 0; j < this.facturas.get(i).getOrden().getPlatos().size(); j++) {
-                        if (this.facturas.get(i).getOrden().getPlatos().get(j).equals(platoTemp)) {
-                            numPlatoTemp++;
-                            break;
-                        }
+        for (int l = 0; l < this.menus.getListaPratillos().size(); l++) {
+            Plato platoTemp = this.menus.getListaPratillos().get(l);
+            int numPlatoTemp = 0;
+            for (int i = 0; i < this.facturas.size(); i++) {
+                for (int j = 0; j < this.facturas.get(i).getOrden().getPlatos().size(); j++) {
+                    if (this.facturas.get(i).getOrden().getPlatos().get(j).equals(platoTemp)) {
+                        numPlatoTemp++;
+                        break;
                     }
-                }
-                if (numPlatoTemp > numPlato1) {
-                    plato1 = platoTemp;
                 }
             }
-            for (int l = 0; l < this.menus.get(k).getListaPratillos().size(); l++) {
-                Plato platoTemp = this.menus.get(k).getListaPratillos().get(l);
-                int numPlatoTemp = 0;
-                for (int i = 0; i < this.facturas.size(); i++) {
-                    for (int j = 0; j < this.facturas.get(i).getOrden().getPlatos().size(); j++) {
-                        if (this.facturas.get(i).getOrden().getPlatos().get(j).equals(platoTemp)) {
-                            numPlatoTemp++;
-                            break;
-                        }
+            if (numPlatoTemp > numPlato1) {
+                plato1 = platoTemp;
+            }
+        }
+        for (int l = 0; l < this.menus.getListaPratillos().size(); l++) {
+            Plato platoTemp = this.menus.getListaPratillos().get(l);
+            int numPlatoTemp = 0;
+            for (int i = 0; i < this.facturas.size(); i++) {
+                for (int j = 0; j < this.facturas.get(i).getOrden().getPlatos().size(); j++) {
+                    if (this.facturas.get(i).getOrden().getPlatos().get(j).equals(platoTemp)) {
+                        numPlatoTemp++;
+                        break;
                     }
+
                 }
                 if (numPlatoTemp > numPlato2 & !plato1.equals(platoTemp)) {
                     plato2 = platoTemp;
@@ -259,18 +253,17 @@ public class Restaurante {
 
     public ArrayList reportePlato(int mesAno) {
         ArrayList resultado = new ArrayList();
-        for (int i = 0; i < this.menus.size(); i++) {
-            for (int j = 0; j < this.menus.get(i).getListaPratillos().size(); j++) {
-                int contador = 0;
-                resultado.add(this.menus.get(i).getListaPratillos().get(j));
-                for (int k = 0; k < this.facturas.size(); k++) {
-                    String mesF = String.valueOf(this.facturas.get(k).getFecha()).substring(2, 5);
-                    int mesFNum = Integer.parseInt(mesF);
-                    if (mesFNum == mesAno) {
-                        for (int l = 0; l < this.facturas.get(k).getOrden().getPlatos().size(); l++) {
-                            if (this.menus.get(i).getListaPratillos().get(j).equals(this.facturas.get(k).getOrden().getPlatos().get(l))) {
-                                contador++;
-                            }
+        for (int j = 0; j < this.menus.getListaPratillos().size(); j++) {
+            int contador = 0;
+            resultado.add(this.menus.getListaPratillos().get(j));
+            for (int k = 0; k < this.facturas.size(); k++) {
+                String mesF = String.valueOf(this.facturas.get(k).getFecha()).substring(2, 5);
+                int mesFNum = Integer.parseInt(mesF);
+                if (mesFNum == mesAno) {
+                    for (int l = 0; l < this.facturas.get(k).getOrden().getPlatos().size(); l++) {
+                        if (this.menus.getListaPratillos().get(j).equals(this.facturas.get(k).getOrden().getPlatos().get(l))) {
+                            contador++;
+
                         }
                     }
                 }
@@ -282,26 +275,26 @@ public class Restaurante {
 
     public ArrayList reporteBebida(int fecha) {
         ArrayList resultado = new ArrayList();
-        for (int i = 0; i < this.menus.size(); i++) {
-            for (int j = 0; j < this.menus.get(i).getListaBebidas().size(); j++) {
-                int contador = 0;
-                resultado.add(this.menus.get(i).getListaBebidas().get(j));
-                for (int k = 0; k < this.facturas.size(); k++) {
-                    int fechaF = this.facturas.get(k).getFecha();
-                    if (fechaF == fecha) {
-                        for (int l = 0; l < this.facturas.get(k).getOrden().getBebidas().size(); l++) {
-                            if (this.menus.get(i).getListaBebidas().get(j).equals(this.facturas.get(k).getOrden().getBebidas().get(l))) {
-                                contador++;
-                            }
+        for (int j = 0; j < this.menus.getListaBebidas().size(); j++) {
+            int contador = 0;
+            resultado.add(this.menus.getListaBebidas().get(j));
+            for (int k = 0; k < this.facturas.size(); k++) {
+                int fechaF = this.facturas.get(k).getFecha();
+                if (fechaF == fecha) {
+                    for (int l = 0; l < this.facturas.get(k).getOrden().getBebidas().size(); l++) {
+                        if (this.menus.getListaBebidas().get(j).equals(this.facturas.get(k).getOrden().getBebidas().get(l))) {
+                            contador++;
                         }
                     }
                 }
+
                 resultado.add(contador);
             }
         }
         return resultado;
     }
 //Revisar
+
     public ArrayList reporteVendido(int ano) {
         int ventasAno = 0;
         ArrayList resultado = new ArrayList();
@@ -327,6 +320,7 @@ public class Restaurante {
         return resultado;
     }
 //Revisar
+
     public ArrayList reporteClientes(int ano) {
         ArrayList resultado = new ArrayList();
         int clienteAno = 0;
@@ -336,10 +330,10 @@ public class Restaurante {
                 int clienteMes = 0;
                 for (int mes = 1; mes <= 12; mes++) {
                     resultado.add(mes);
-                    
+
                     clienteMes += this.facturas.get(i).getCliente().size();
                     clienteAno += this.facturas.get(i).getCliente().size();
-                    
+
                     resultado.add(clienteMes);
                 }
             }
@@ -433,8 +427,5 @@ public class Restaurante {
 
     public void setMenus(Menu menus) {
         this.menus = menus;
-    }
-    public static Restaurante getInstance(){
-        return vPrincipal.restaurante;
     }
 }

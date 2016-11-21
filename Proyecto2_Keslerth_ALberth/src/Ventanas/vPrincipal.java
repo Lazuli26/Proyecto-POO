@@ -25,15 +25,12 @@ public class vPrincipal extends javax.swing.JFrame {
     ImageIcon foto;
     
     infoRest vInfoRes;
-    public static AtenderCliente vAtenderCliente;
-    AgregarEmpleado vAgregarEmpleado;
-    VerEmpleados vAVerEmpleado;
-    AgregarCliente vAgregarCliente;
-    EscogerMesa vEscogerMesa;
-    PedirComida vPedirComida;
-    ArrayList<Mesero> meseros;
-    ArrayList<Cocinero> cocineros;
-    ArrayList<Cliente> clientes;
+    public AtenderCliente vAtenderCliente;
+    public AgregarEmpleado vAgregarEmpleado;
+    public VerEmpleados vAVerEmpleado;
+    public AgregarCliente vAgregarCliente;
+    public EscogerMesa vEscogerMesa;
+    public PedirComida vPedirComida;
     
     /**
      * Creates new form vPrincipal
@@ -61,7 +58,7 @@ public class vPrincipal extends javax.swing.JFrame {
         vAgregarCliente = new AgregarCliente(restaurante, vAtenderCliente);
         vEscogerMesa = new EscogerMesa(restaurante, vAtenderCliente);
         vPedirComida = new PedirComida(restaurante);
-        vAVerEmpleado=new VerEmpleados();
+        vAVerEmpleado=new VerEmpleados(restaurante);
         //Agregar ventanas al Escritorio
         this.jDesktopPane1.add(vAgregarCliente);
         this.jDesktopPane1.add(vEscogerMesa);
@@ -106,7 +103,7 @@ public class vPrincipal extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNomMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(533, Short.MAX_VALUE))
+                .addContainerGap(814, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +236,8 @@ public class vPrincipal extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         vAVerEmpleado.dispose();
-        vAVerEmpleado=new VerEmpleados();
+        vAVerEmpleado=new VerEmpleados(restaurante);
+        vAVerEmpleado.actualizar();
         this.jDesktopPane1.add(vAVerEmpleado);
         vAVerEmpleado.show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -278,7 +276,9 @@ public class vPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    public static Restaurante getRestaurante(){
+        return restaurante;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;

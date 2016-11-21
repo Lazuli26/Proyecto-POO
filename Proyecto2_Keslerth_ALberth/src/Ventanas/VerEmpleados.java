@@ -12,21 +12,37 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public class VerEmpleados extends javax.swing.JInternalFrame {
-    ArrayList<String> Elementos;
     
     /**
      * Creates new form VerEmpleados
      */
-    public VerEmpleados() {
+    public VerEmpleados(Restaurante restaurante) {
         initComponents();
-        Elementos=new ArrayList<String>();
-        int tamano=Restaurante.getInstance().getCocineros().size()+Restaurante.getInstance().getMeseros().size();
-        jTable1.setSize(6, 1);
-        for(int x=0;x<Restaurante.getInstance().getCocineros().size();x++){
-            jTable1.setValueAt(Restaurante.getInstance().getCocineros().get(x).getCedula(), 0, x);
+        this.actualizar();
         }
+    
+    public void actualizar(){
+        jTable1.setSize(6, vPrincipal.getRestaurante().getCocineros().size()+vPrincipal.getRestaurante().getMeseros().size());
+        for(int x=0;x<vPrincipal.getRestaurante().getCocineros().size();x++){
+            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getCedula(), x, 0);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getNombreFull(), x, 1);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getTelefono(), x, 2);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getDireccion(), x, 3);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getCocineros().get(x).getCorreo(), x, 4);
+            jTable1.setValueAt("Irrelevante", x, 5);
+            jTable1.setValueAt("Cocinero", x, 6);
+            }
+        int y=vPrincipal.getRestaurante().getCocineros().size();
+        for(int x=0;x<vPrincipal.getRestaurante().getMeseros().size();x++){
+            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getCedula(), x+y, 0);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getNombreFull(), x+y, 1);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getTelefono(), x+y, 2);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getDireccion(), x+y, 3);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getCorreo(), x+y, 4);
+            jTable1.setValueAt(vPrincipal.getRestaurante().getMeseros().get(x).getIdiomas(), x+y, 5);
+            jTable1.setValueAt("Mesero", x+y, 6);
+            }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,42 +54,115 @@ public class VerEmpleados extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jScrollPane1.setAutoscrolls(true);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cedula", "Nombre", "Telefono", "Direccion", "Correo", "Idioma", "Tipo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setText("Ok");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.actualizar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
