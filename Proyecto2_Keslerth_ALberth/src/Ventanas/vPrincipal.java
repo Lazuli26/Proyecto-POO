@@ -25,7 +25,7 @@ public class vPrincipal extends javax.swing.JFrame {static String path;
     EscogerMesa vEscogerMesa;
     PedirComida vPedirComida;
     Reportes vReportes;
-    Factura vFactura;
+    public Factura vFactura;
     ArrayList<Mesero> meseros;
     ArrayList<Cocinero> cocineros;
     ArrayList<Cliente> clientes;
