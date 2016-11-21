@@ -6,9 +6,9 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Main;
 import Clases.Orden;
 import Clases.Restaurante;
-import static Ventanas.AtenderCliente.orden;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,20 +17,18 @@ import java.util.List;
  * @author keslerth
  */
 public class AgregarCliente extends javax.swing.JInternalFrame {
-    static int numCliente = 1;
     Restaurante res;
     /**
      * Creates new form AgregarCliente
      */
-    public AgregarCliente(Restaurante restaurante) {
+    public AgregarCliente() {
         initComponents();
-        res = restaurante;
-        this.jLabel7.setText(String.valueOf(numCliente));
+        this.jLabel7.setText(String.valueOf(Main.restaurante.getClientes().size()));
         
     }
     
     public void txtBlancos(){
-        this.jLabel7.setText(String.valueOf(numCliente));
+        this.jLabel7.setText(String.valueOf(Main.restaurante.getClientes().size()));
         this.txtNombre.setText("");
         this.txtCedula.setText("");
         this.txtTelefono.setText("");
@@ -151,11 +149,23 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cliente cliente = new Cliente(numCliente, AtenderCliente.orden, 1, this.txtNombre.getText(), Integer.parseInt(this.txtCedula.getText()), Integer.parseInt(this.txtTelefono.getText()));
-        numCliente+=1;
-        AtenderCliente.orden.grupoClientes(cliente);
-        txtBlancos();
-        this.setVisible(false);
+        for(Cliente cliente:Main.restaurante.getClientes()){
+            if(cliente.getNombreFull().equals(this.txtNombre.getText())){
+                txtBlancos();
+                this.setVisible(false);
+                this.jLabel7.setText("Este nombre ya existe!");
+                return;
+            }
+        }
+        try{
+            Main.restaurante.nuevoCliente(new Cliente(Main.restaurante.getClientes().size(), Main.ventana.vAtenderCliente.orden, 1, this.txtNombre.getText(), Integer.parseInt(this.txtCedula.getText()), Integer.parseInt(this.txtTelefono.getText())));
+            txtBlancos();
+            Clases.Main.ventana.vAtenderCliente.llenarCombo();
+            this.setVisible(false);
+        }
+        catch(Exception e){
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

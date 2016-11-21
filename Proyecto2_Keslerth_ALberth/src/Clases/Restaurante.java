@@ -1,11 +1,12 @@
 package Clases;
 
 import Ventanas.vPrincipal;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class Restaurante {
+    public class Restaurante {
 
     private String nombre;
 
@@ -36,9 +37,14 @@ public class Restaurante {
     public Restaurante() {
     }
 
-    public Restaurante(String nombre, ImageIcon logo, int telefono, ArrayList direccion, String correo) {
+
+    public Restaurante(String nombre, int telefono, ArrayList direccion, String correo) {
+        //Mesero---
         this.nombre = nombre;
-        this.logo = logo;
+        String path = "/images/queso.png";
+        URL url=this.getClass().getResource(path);
+        ImageIcon foto=new ImageIcon(url);
+        this.logo = foto;
         this.telefono = telefono;
         this.direccion = direccion;
         this.correo = correo;
@@ -60,6 +66,7 @@ public class Restaurante {
         this.menus.agregarBebida(new Bebida("Agua con hielo", 0, 350));
         this.menus.agregarBebida(new Bebida("Te frío", 500, 600));
         this.meseros.add(new Mesero("Español", "Josefina", 123, 88888888, "Por San Jose", "fina@gg.com"));
+        this.cocineros.add(new Cocinero("Alberth Salas", 207690305, 88016578, "Por mi casita", "alberthsalascalero@gmail.com"));
         this.meseros.add(new Mesero("Italiano", "Jancarlo", 133, 88888889, "Por San Jose", "fina@gg.com"));
         this.ordenes.add(new Orden(1, 1, this.meseros.get(0), this.mesas.get(0), this.menus));
         this.ordenes.add(new Orden(2, 2, this.meseros.get(1), this.mesas.get(1), this.menus));
@@ -70,7 +77,6 @@ public class Restaurante {
         this.ordenes.get(0).pedido(this.menus.getListaPratillos().get(1));
         this.ordenes.get(0).pedido(this.menus.getListaBebidas().get(0));
         this.ordenes.get(0).pedido(this.menus.getListaBebidas().get(1));
-
     }
 
     public void contratarMesero(Mesero mesero) {
@@ -157,11 +163,11 @@ public class Restaurante {
             int ordenesTemp = 0;
             for (int j = 0; j < this.facturas.size(); j++) {
                 int fechaF = Integer.parseInt(String.valueOf(this.facturas.get(j).getFecha()).substring(2, 5));
-                if (this.facturas.get(j).getOrden().getMeseroAtiende().equals(empleadoTemp) & fechaF.equals(fecha)) {
+                //if (this.facturas.get(j).getOrden().getMeseroAtiende().equals(empleadoTemp) & fechaF.equals(fecha)) {
                     ordenesTemp++;
                     break;
 
-                }
+                //}
             }
             if (ordenesTemp >= ordenesM) {
                 empleadoM = empleadoTemp;
@@ -434,9 +440,5 @@ public class Restaurante {
 
     public void setMenus(Menu menus) {
         this.menus = menus;
-    }
-
-    public static Restaurante getInstance() {
-        return vPrincipal.restaurante;
     }
 }

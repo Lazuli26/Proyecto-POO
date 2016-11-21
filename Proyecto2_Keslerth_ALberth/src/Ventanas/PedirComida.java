@@ -5,8 +5,8 @@
  */
 package Ventanas;
 
+import Clases.Main;
 import Clases.Restaurante;
-import static Ventanas.vPrincipal.vAtenderCliente;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,35 +15,35 @@ import javax.swing.table.DefaultTableModel;
  * @author keslerth
  */
 public class PedirComida extends javax.swing.JInternalFrame {
-    Restaurante res;
+
     /**
      * Creates new form PedirComida
      */
-    public PedirComida(Restaurante restaurante) {
+    public PedirComida() {
         initComponents();
-        res = restaurante;
         verPlatos();
         verBebidas();
     }
-    
-    public void verPlatos(){
-        for(int i = 0;i<res.getMenus().getListaPratillos().size();i++){
-            this.jTable1.setValueAt(res.getMenus().getListaPratillos().get(i).getNomPlato(), i, 0);
-            this.jTable1.setValueAt(res.getMenus().getListaPratillos().get(i).getPrecioSinImpuesto(), i, 1);
+
+    public void verPlatos() {
+        for (int i = 0; i < Main.restaurante.getMenus().getListaPratillos().size(); i++) {
+            this.jTable1.setValueAt(Main.restaurante.getMenus().getListaPratillos().get(i).getNomPlato(), i, 0);
+            this.jTable1.setValueAt(Main.restaurante.getMenus().getListaPratillos().get(i).getPrecioSinImpuesto(), i, 1);
             this.jTable1.setValueAt(0, i, 2);
             this.jTable1.setValueAt(false, i, 3);
         }
     }
 
-    public void verBebidas(){
-        for(int i = 0;i<res.getMenus().getListaBebidas().size();i++){
-            this.jTable2.setValueAt(res.getMenus().getListaBebidas().get(i).getTipo(), i, 0);
-            this.jTable2.setValueAt(res.getMenus().getListaBebidas().get(i).getPrecio(), i, 1);
-            this.jTable2.setValueAt(res.getMenus().getListaBebidas().get(i).getPesoML(), i, 2);
+    public void verBebidas() {
+        for (int i = 0; i < Main.restaurante.getMenus().getListaBebidas().size(); i++) {
+            this.jTable2.setValueAt(Main.restaurante.getMenus().getListaBebidas().get(i).getTipo(), i, 0);
+            this.jTable2.setValueAt(Main.restaurante.getMenus().getListaBebidas().get(i).getPrecio(), i, 1);
+            this.jTable2.setValueAt(Main.restaurante.getMenus().getListaBebidas().get(i).getPesoML(), i, 2);
             this.jTable2.setValueAt(0, i, 3);
             this.jTable2.setValueAt(false, i, 4);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -211,26 +211,31 @@ public class PedirComida extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(!res.getMenus().getListaPratillos().isEmpty()){
-            res.getMenus().setListaPratillos(new ArrayList());             
+        if (!Main.restaurante.getMenus().getListaPratillos().isEmpty()) {
+            Main.restaurante.getMenus().setListaPratillos(new ArrayList());
         }
-        if(!res.getMenus().getListaBebidas().isEmpty()){
-            res.getMenus().setListaBebidas(new ArrayList());
+        if (!Main.restaurante.getMenus().getListaBebidas().isEmpty()) {
+            Main.restaurante.getMenus().setListaBebidas(new ArrayList());
         }
-        for(int i = 0;i<res.getMenus().getListaPratillos().size();i++){
-            if(this.jTable1.getValueAt(i, 3).toString().equals("true")){
-                AtenderCliente.orden.pedido(res.getMenus().getListaPratillos().get(i));
-                AtenderCliente.cantidades.add(Integer.parseInt(this.jTable1.getValueAt(i, 2).toString()));
+        for (int i = 0; i < Main.restaurante.getMenus().getListaPratillos().size(); i++) {
+            if (this.jTable1.getValueAt(i, 3).toString().equals("true")) {
+                for (int x = 0; x < Integer.parseInt(jTable1.getValueAt(i, 2).toString()); x++) {
+                    Main.ventana.vAtenderCliente.orden.pedido(Main.restaurante.getMenus().getListaPratillos().get(i));
+                    Main.ventana.vAtenderCliente.cantidades.add(Integer.parseInt(this.jTable1.getValueAt(i, 2).toString()));
+                }
             }
         }
-        for(int i = 0;i<res.getMenus().getListaBebidas().size();i++){
-            if(this.jTable2.getValueAt(i, 4).toString().equals("true")){
-                AtenderCliente.orden.pedido(res.getMenus().getListaBebidas().get(i));
-                AtenderCliente.cantidades.add(Integer.parseInt(this.jTable2.getValueAt(i, 3).toString()));
+        for (int i = 0; i < Main.restaurante.getMenus().getListaBebidas().size(); i++) {
+            if (this.jTable2.getValueAt(i, 4).toString().equals("true")) {
+                for (int x = 0; x < Integer.parseInt(jTable2.getValueAt(i, 3).toString()); x++) {
+                    Main.ventana.vAtenderCliente.orden.pedido(Main.restaurante.getMenus().getListaBebidas().get(i));
+                    Main.ventana.vAtenderCliente.cantidades.add(Integer.parseInt(this.jTable2.getValueAt(i, 3).toString()));
+                }
             }
         }
         verPlatos();
         verBebidas();
+        Main.ventana.vAtenderCliente.llenarOrden();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

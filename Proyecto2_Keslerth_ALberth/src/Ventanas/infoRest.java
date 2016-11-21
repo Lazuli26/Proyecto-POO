@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Main;
 import Clases.Restaurante;
 
 /**
@@ -12,18 +13,16 @@ import Clases.Restaurante;
  * @author keslerth
  */
 public class infoRest extends javax.swing.JInternalFrame {
-    Restaurante rest;
     /**
      * Creates new form infoRest
      */
-    public infoRest(Restaurante restaurante) {
+    public infoRest() {
         initComponents();
-        rest = restaurante;
-        this.nombre.setText(rest.getNombre());
-        this.telefono.setText(String.valueOf(rest.getTelefono()));
-        this.direccion.setText(rest.getDireccion().get(0)+", "+rest.getDireccion().get(1)+", "+rest.getDireccion().get(2)+", "+rest.getDireccion().get(3));
-        this.correo.setText(rest.getCorreo());
-        this.foto.setIcon(rest.getLogo());
+        this.nombre.setText(Main.restaurante.getNombre());
+        this.telefono.setText(String.valueOf(Main.restaurante.getTelefono()));
+        this.direccion.setText(Main.restaurante.getDireccion().get(0)+", "+Main.restaurante.getDireccion().get(1)+", "+Main.restaurante.getDireccion().get(2)+", "+Main.restaurante.getDireccion().get(3));
+        this.correo.setText(Main.restaurante.getCorreo());
+        this.foto.setIcon(Main.restaurante.getLogo());
     }
 
     /**

@@ -110,11 +110,11 @@ public class Reportes extends javax.swing.JInternalFrame {
 
     private void VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerActionPerformed
         // TODO add your handling code here:
-        String fecha = this.jTextField2.getText()+this.jTextField3.getText();
-        String reporte = this.jComboBox1.getSelectedItem().toString();
-        if (reporte.equals("Empleado del mes")){
-            res.mejorEmpleado(fecha);
-        }
+//        String fecha = this.jTextField2.getText()+this.jTextField3.getText();
+//        String reporte = this.jComboBox1.getSelectedItem().toString();
+//        if (reporte.equals("Empleado del mes")){
+//            res.mejorEmpleado(fecha);
+//        }
     }//GEN-LAST:event_VerActionPerformed
 
 

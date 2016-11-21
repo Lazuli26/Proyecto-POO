@@ -8,8 +8,6 @@ package Ventanas;
 import Clases.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -17,15 +15,10 @@ import javax.swing.JOptionPane;
  *
  * @author keslerth
  */
-public class vPrincipal extends javax.swing.JFrame {
-    public static Restaurante restaurante;
-    ArrayList direccion;
-    String path;  
-    URL url;
-    ImageIcon foto;
-    
+public class vPrincipal extends javax.swing.JFrame {static String path;  
+    static Object Main;
     infoRest vInfoRes;
-    public static AtenderCliente vAtenderCliente;
+    public AtenderCliente vAtenderCliente;
     AgregarEmpleado vAgregarEmpleado;
     VerEmpleados vAVerEmpleado;
     AgregarCliente vAgregarCliente;
@@ -41,36 +34,22 @@ public class vPrincipal extends javax.swing.JFrame {
      */
     public vPrincipal() {
         initComponents();
-        //Direccion------
-        direccion = new ArrayList();
-        direccion.add("Alajuela");
-        direccion.add("San Carlos");
-        direccion.add("Quesada");
-        direccion.add("300m liceo SC");
-        //Direccion-------
-        //Foto---
-        path = "/images/queso.png";
-        url = this.getClass().getResource(path);
-        foto = new ImageIcon(url);
-        //Foto---
-        //Mesero---
-        restaurante = new Restaurante("Cheese Restaurante", foto, 86360027, direccion, "cheeseres@gmail.com");
+        
         //Inicializar ventanas
-        vInfoRes = new infoRest(restaurante);
+        vInfoRes = new infoRest();
         vAgregarEmpleado=new AgregarEmpleado();
-        vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
-        vAgregarCliente = new AgregarCliente(restaurante);
-        vEscogerMesa = new EscogerMesa(restaurante);
-        vPedirComida = new PedirComida(restaurante);
+        vAtenderCliente = new AtenderCliente(vAgregarCliente,vEscogerMesa,vPedirComida);
+        vAgregarCliente = new AgregarCliente();
+        vEscogerMesa = new EscogerMesa();
+        vPedirComida = new PedirComida();
         vAVerEmpleado=new VerEmpleados();
-        vReportes = new Reportes(restaurante);
+        //vReportes = new Reportes();
         //Agregar ventanas al Escritorio
         this.jDesktopPane1.add(vAgregarCliente);
         this.jDesktopPane1.add(vEscogerMesa);
         this.jDesktopPane1.add(vPedirComida);
-        this.jDesktopPane1.add(vReportes);
+//        this.jDesktopPane1.add(vReportes);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,16 +198,22 @@ public class vPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        int mesero = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la cedula, mesero"));
-        for(int i = 0;i<restaurante.getMeseros().size();i++){
+        try{
+            int mesero = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la cedula, mesero"));
+            for(int i = 0;i<Clases.Main.restaurante.getMeseros().size();i++){
 
-            if(restaurante.getMeseros().get(i).getCedula() == mesero){
-                vAtenderCliente = new AtenderCliente(restaurante,vAgregarCliente,vEscogerMesa,vPedirComida);
-                this.jDesktopPane1.add(vAtenderCliente);
-                vAtenderCliente.show();
-                AtenderCliente.orden.setMeseroAtiende(restaurante.getMeseros().get(i));
-                this.lblNomMesero.setText(restaurante.getMeseros().get(i).getNombreFull());
+                if(Clases.Main.restaurante.getMeseros().get(i).getCedula() == mesero){
+                    vAtenderCliente = new AtenderCliente(vAgregarCliente,vEscogerMesa,vPedirComida);
+                    this.jDesktopPane1.add(vAtenderCliente);
+                    vAtenderCliente.show();
+                    Clases.Main.ventana.vAtenderCliente.orden.setMeseroAtiende(Clases.Main.restaurante.getMeseros().get(i));
+                    this.lblNomMesero.setText(Clases.Main.restaurante.getMeseros().get(i).getNombreFull());
+                }
+
             }
+        }
+        catch(Exception e){
+            
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -295,7 +280,6 @@ public class vPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;

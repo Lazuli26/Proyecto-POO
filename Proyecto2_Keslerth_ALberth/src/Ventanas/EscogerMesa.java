@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Main;
 import Clases.Restaurante;
 
 /**
@@ -18,13 +19,12 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
     /**
      * Creates new form EscogerMesa
      */
-    public EscogerMesa(Restaurante restaurante) {
+    public EscogerMesa() {
         initComponents();
-        res = restaurante;
         this.vAtender = vAtender;
         this.jComboBox1.removeAllItems();
-        for(int i = 0; i<restaurante.getMesas().size();i++){
-            this.jComboBox1.addItem(restaurante.getMesas().get(i).getNumAsientos());
+        for(int i = 0; i<Main.restaurante.getMesas().size();i++){
+            this.jComboBox1.addItem(Main.restaurante.getMesas().get(i).getNumAsientos());
         }
     }
 
@@ -179,10 +179,11 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
         int numMesa = Integer.parseInt(this.jComboBox1.getSelectedItem().toString());
         for(int i = 0; i < res.getMesas().size();i++){
             if (numMesa == res.getMesas().get(i).getNumAsientos()){
-                AtenderCliente.orden.setMesaCliente(res.getMesas().get(i));
+                Main.ventana.vAtenderCliente.orden.setMesaCliente(res.getMesas().get(i));
                 break;
             }
         }
+        Main.ventana.vAtenderCliente.actualizarMesa();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -206,8 +207,8 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
         for(int i = 0; i < res.getMesas().size();i++){
             if (numMesa == res.getMesas().get(i).getNumAsientos()){
                 this.lblCantSil.setText(String.valueOf(res.getMesas().get(i).getCantidad()));
-                this.lblCantPer.setText(String.valueOf(AtenderCliente.orden.getClientesAtendidos().size()));
-                if(res.getMesas().get(i).getCantidad() > AtenderCliente.orden.getClientesAtendidos().size()){
+                this.lblCantPer.setText(String.valueOf(Main.ventana.vAtenderCliente.orden.getClientesAtendidos().size()));
+                if(res.getMesas().get(i).getCantidad() > Main.ventana.vAtenderCliente.orden.getClientesAtendidos().size()){
                     if(res.getMesas().get(i).isDisponible()){
                         this.lblDispo.setText("Si");
                         this.lblUtil.setText("Si");
